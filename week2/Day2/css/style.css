@@ -75,3 +75,6 @@ h1{
 .btn:hover{
     background-color: rgba(230, 116, 139, 0.178);
 }
+#riddles{
+    padding: 15px;
+}

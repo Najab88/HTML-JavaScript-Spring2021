@@ -1,0 +1,65 @@
+body{
+
+    background-image: url(images/blossom.jpg);
+    background-repeat: repeat;
+    background-size: 200px;
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18pt;
+    font-weight: 200;
+    color: rgb(153, 15, 45); 
+
+}
+
+#container{
+    width: 970px;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    
+}
+h1{
+    width: 950px;
+    margin: 10px;
+    text-align: center;
+    background-color: rgba(231, 66, 157, 0.329);
+    border: 5px groove; color: rgb(7, 6, 6);
+}
+#biosection{
+    width: 950px;
+    padding: 10px;
+    background-color: rgba(231, 66, 157, 0.329);
+    border: 5px groove; color: rgb(7, 6, 6);  
+}
+#sections{
+    width: 950px;
+    padding: 10px;
+    background-color: rgba(231, 66, 157, 0.329);
+    border: 5px groove; color: rgb(7, 6, 6);
+}
+img{
+    border: 20px groove; 
+    border-color: rgba(121, 6, 96, 0.623);
+}
+#content{
+    color: rgb(69, 4, 71);
+    font-size: 14pt;
+
+}
+#nav-bar{
+   
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    line-height: 50px;
+}
+
+
+
+
+
+
+
+

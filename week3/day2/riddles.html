@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multipage Example and Semantic Elements</title>
+    <link rel="stylesheet" href="css/biostyle.css">
+    <!---link for google font-->
+    <link rel="stylesheet" href="link rel=" preconnect href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300&family=Open+Sans&family=RocknRoll+One&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="main-container">
+        <header>
+            <h1>Bio Example Lab</h1>
+        </header>
+        <nav>
+            <a href="index.html" class="btn">Bio</a>
+            <a href="schools.html" class="btn">Schools</a>
+            <a href="#" class="btn">Riddles</a>
+        </nav>
+        <section>
+            <h2 class="title">Riddles</h2>
+
+            <h2>1. What starts with a P, ends with an E, and has thousands of letters?</h2>
+            <span id="answer1"></span>
+            <br>
+            <button onclick="showAnswer('answer1','The Post Office!')">Show Answer</button>
+            <h2>2. What has to be broken before you can use it?</h2>
+            <span id="answer2"></span>
+            <br>
+            <button onclick="showAnswer('answer2','An egg!')">Show Answer</button>
+          
+        
+
+        </section>
+
+        <footer>
+            <p class="copy">&copy; 2021 HTML JavaScript Class</p>
+        </footer>
+    </div>
+    <!--adding javascript-->
+<script src="js/riddle.js"></script>
+</body>
+
+</html>

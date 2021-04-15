@@ -1,0 +1,93 @@
+body,html{
+    display: flex;
+    justify-content: center;
+    background-color: #999999;
+}
+
+#main-container{
+    width: 980px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 500;
+    /*adds drop shadow behind box*/
+    box-shadow: 10px 10px 10px rgba(182, 24, 164, 0.932);
+}
+
+header{
+    width: 960px;
+    height: 50px;
+    padding: 10px;
+    background-color: #794d0b;
+    color: whitesmoke;
+    text-align: center;
+    line-height: 50px;
+    /*rule for google font*/
+    font-family: 'Noto Sans SC', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'RocknRoll One', sans-serif;
+}
+
+h1{
+    margin: 0;
+    padding: 0;
+}
+nav{
+    width: 980px;
+    height: 50px;
+    background-color: black;
+    border-top: 1px solid white;
+    display: flex;
+    justify-content: center;
+}
+
+.btn{
+    width: 100px;
+    height: 50px;
+    background-color: rgba(177, 112, 14, 0.507);
+    color: whitesmoke;
+    margin-right: 5px;
+    text-align: center;
+    line-height: 50px;
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.btn:hover{
+    background-color: rgb(223, 170, 25);
+}
+section{
+    float: left;
+    width: 600px;
+    padding: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.title{
+    background-color: #444444;
+    color: whitesmoke;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 5px 0 5px 5px ;
+
+}
+
+aside{
+    float: right;
+    width: 340px;
+    padding: 10px;
+font-family: cursive;
+}
+
+footer{
+    width: 980px;
+    height: 50px;
+    clear: both;
+    background-color: rgba(14, 5, 13, 0.185);
+    text-align: center;
+    border-top: 1px solid whitesmoke;
+    
+}
+.copy{
+    color: black;
+    font-size: 15pt;
+}

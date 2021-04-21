@@ -20,10 +20,12 @@ header{
     color: rgb(219, 20, 176);
     text-align: center;
     line-height: 50px;
-    font-family: cursive;
+    font-family: 'Ubuntu Mono', monospace;
     border-top:  double rgb(22, 113, 218);
+    border-bottom: 3px double rgb(22, 113, 218);
     text-shadow: 2px 2px rgba(100, 148, 237, 0.507);
     margin: auto;
+    margin-bottom: 12px;
 }
 
 h1{
@@ -50,7 +52,7 @@ nav{
     text-align: center;
     line-height: 50px;
     text-decoration: none;
-    font-family: cursive
+    font-family: 'Ubuntu Mono', monospace;
 }
 
 .btn:hover{
@@ -67,11 +69,11 @@ section{
  
  #con{
     text-align: center;
-    font-family: cursive;
+    font-family: 'Ubuntu Mono', monospace;
     font-size: 18px;
     color: whitesmoke;
     padding: 50px;
-    font-family: cursive;
+    font-family: 'Ubuntu Mono', monospace;
     text-shadow: 4px 4px rgb(1, 1, 2);
 
 }
@@ -92,7 +94,7 @@ h2{
 .hob{
     background-color: rgba(0, 0, 0, 0.795);
    color: whitesmoke;
-   font-family: cursive;
+   font-family: 'Ubuntu Mono', monospace;
    text-align: center;
    padding: 3px 3px 3px 3px;
    border-top: 3px double rgb(22, 113, 218);
@@ -104,7 +106,7 @@ h2{
 .hobbies{
     background-color: rgba(0, 0, 0, 0.795);
     color: whitesmoke;
-    font-family: cursive;
+    font-family: 'Ubuntu Mono', monospace;
     text-align: center;
     padding: 5px 5px 5px 5px;
     border-top: 3px double rgb(22, 113, 218);
@@ -127,7 +129,7 @@ aside{
     float: right;
     width: 340px;
     padding: 50px;
- font-family: cursive;
+    font-family: 'Ubuntu Mono', monospace;
 }
 .ol{
     background-color: rgba(0, 0, 0, 0.795);
@@ -138,11 +140,12 @@ aside{
  height: 120px;
  text-align: left;
  list-style: circle; 
+ 
 }
 .schl{
     background-color: rgba(0, 0, 0, 0.795);
  color: whitesmoke;
- font-family: cursive;
+ font-family: 'Ubuntu Mono', monospace;
  text-align: center;
  padding: 5px 5px 5px 5px;
  border-top: 3px double rgb(22, 113, 218);
@@ -188,4 +191,10 @@ footer{
     font-size: 15pt;
     padding: 10px;
     height: 25px;
+    font-family: 'Ubuntu Mono', monospace;
+}
+.school-links:hover{
+    color: blueviolet;
+    
+
 }

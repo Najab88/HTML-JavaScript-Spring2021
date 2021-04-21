@@ -1,0 +1,191 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+
+#container{
+    width: 1000px;
+    padding: 20px;
+    border: 4px inset rgb(255, 8, 152);
+    border-radius: 25px;
+    box-shadow: 3px 3px 3px 8px rgba(24, 155, 231, 0.575);
+    background-color: rgba(136, 15, 126, 0.479);
+}
+
+header{
+    width: 960px;
+    height: 50px;
+    padding: 10px;
+    background-color: #000000d5;
+    color: rgb(219, 20, 176);
+    text-align: center;
+    line-height: 50px;
+    font-family: cursive;
+    border-top:  double rgb(22, 113, 218);
+    text-shadow: 2px 2px rgba(100, 148, 237, 0.507);
+    margin: auto;
+}
+
+h1{
+    margin: 0;
+    padding: 0;
+}
+nav{
+    width: 975px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.795);
+    border-top: 3px double rgb(22, 113, 218);
+    border-bottom: 3px double rgb(22, 113, 218);
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+.btn{
+    width: 75px;
+    height: 50px;
+    background-color: rgba(127, 16, 155, 0.205);
+    color: rgb(219, 20, 176);
+    margin-right: 50px;
+    text-align: center;
+    line-height: 50px;
+    text-decoration: none;
+    font-family: cursive
+}
+
+.btn:hover{
+    background-color: rgba(121, 8, 106, 0.438);
+}
+
+section{
+    float: left;
+    text-align: left;
+    width: 450px;
+    padding: 50px;
+    font-family: cursive
+}
+ 
+ #con{
+    text-align: center;
+    font-family: cursive;
+    font-size: 18px;
+    color: whitesmoke;
+    padding: 50px;
+    font-family: cursive;
+    text-shadow: 4px 4px rgb(1, 1, 2);
+
+}
+.para{
+    color: whitesmoke;
+    background-color: rgba(0, 0, 0, 0.795);
+    box-shadow: 3px 3px 3px 7px rgba(236, 79, 236, 0.61);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+    font-size: 18pt;
+}
+
+.hob{
+    background-color: rgba(0, 0, 0, 0.795);
+   color: whitesmoke;
+   font-family: cursive;
+   text-align: center;
+   padding: 3px 3px 3px 3px;
+   border-top: 3px double rgb(22, 113, 218);
+   border-bottom: 3px double rgb(22, 113, 218);
+   width: 425px;
+   margin: 10px;
+}
+
+.hobbies{
+    background-color: rgba(0, 0, 0, 0.795);
+    color: whitesmoke;
+    font-family: cursive;
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+    border-top: 3px double rgb(22, 113, 218);
+    border-bottom: 3px double rgb(22, 113, 218);
+    width: 375px;
+}
+
+.list{
+   background-color: rgba(0, 0, 0, 0.795);
+   box-shadow: 1px 1px 1px 3px rgba(236, 79, 236, 0.61);
+   border-radius: 5px;
+   color: whitesmoke;
+   width: 350px;
+   height: 120px;
+   text-align: left;
+   list-style: circle;
+}
+
+aside{
+    float: right;
+    width: 340px;
+    padding: 50px;
+ font-family: cursive;
+}
+.ol{
+    background-color: rgba(0, 0, 0, 0.795);
+ box-shadow: 1px 1px 1px 3px rgba(236, 79, 236, 0.61);
+ border-radius: 5px;
+ color: whitesmoke;
+ width: 350px;
+ height: 120px;
+ text-align: left;
+ list-style: circle; 
+}
+.schl{
+    background-color: rgba(0, 0, 0, 0.795);
+ color: whitesmoke;
+ font-family: cursive;
+ text-align: center;
+ padding: 5px 5px 5px 5px;
+ border-top: 3px double rgb(22, 113, 218);
+ border-bottom: 3px double rgb(22, 113, 218);
+ width: 375px;
+}
+.img{
+    padding-right: 50px;
+}
+
+footer{
+    width: 980px;
+    height: 50px;
+    clear: both;
+    background-color: rgba(0, 0, 0, 0.795);
+    text-align: center;
+    border-top: 3px double rgb(22, 113, 218);
+    border-bottom: 3px double rgb(22, 113, 218);
+    
+}
+#riddles{
+    background-color: rgba(0, 0, 0, 0.795);
+    text-align: center;
+    color: whitesmoke;
+    border-top: 3px double rgb(22, 113, 218);
+    border-bottom: 3px double rgb(22, 113, 218);
+    justify-content: center;
+}
+
+.rid{
+   width: 900px;
+   height: 50px;
+   clear: both;
+   background-color: rgba(0, 0, 0, 0.795);
+   text-align: center;
+   color: whitesmoke;
+   border-top: 3px double rgb(22, 113, 218);
+   border-bottom: 3px double rgb(22, 113, 218);
+
+}
+.copy{
+    color: whitesmoke;
+    font-size: 15pt;
+    padding: 10px;
+    height: 25px;
+}

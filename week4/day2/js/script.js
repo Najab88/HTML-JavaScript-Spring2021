@@ -15,7 +15,7 @@ kodama.onload = function () {
     main()
 }
 function main() {
-    ctx.clearRect(0,0,canvas.width, canvas.height)
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
     //draw images
     ctx.drawImage(forest, 0, 0, 800, 600)
     ctx.drawImage(kodama, x, 300, 300, 300)
@@ -23,7 +23,7 @@ function main() {
 
     //update position
     x += .5
-    if(x > canvas.width + 20){
+    if (x > canvas.width + 20) {
         x = -100
     }
     timer = requestAnimationFrame(main)

@@ -44,7 +44,7 @@ mouse.onload = function(){
     main()
 }
 //Fuel Var
-var startFuel = randomNumber(high = 920 , low = 790) 
+var startFuel = randomNumber(high = 920 , low = 750) 
 var fuel = startFuel
 var fullBarWidth = 512
 

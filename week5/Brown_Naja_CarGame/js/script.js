@@ -4,7 +4,7 @@ var ctx = canvas.getContext('2d')
 var timer = requestAnimationFrame(main)
 
 
-var xpos = 20
+var xpos = 15
 var start = 58
 var finish = 956
 
@@ -25,7 +25,7 @@ bath.onload = function () {
 }
 
 //Fuel Var
-var startFuel = randomNumber(904, 800)
+var startFuel = randomNumber(800, 950)
 var fuel = startFuel
 var fullBarWidth = 512
 
@@ -47,7 +47,7 @@ function main() {
 
     //images
     ctx.drawImage(bath, 0, 0, 1024, 768)
-    ctx.drawImage(chi, xpos, canvas.height / 2 - 90, 100, 90)
+    ctx.drawImage(chi, xpos, canvas.height / 2 - 90, 100, 100)
     
 
     if (gameOver) {
@@ -182,7 +182,7 @@ function drawResults() {
         ctx.fillStyle = "white"
         ctx.font = "25px Verdana"
         ctx.textAlign = "center"
-        ctx.fillText("You didn't make it! :(  Press spacebar to try again", canvas.width / 2, canvas.height / 2);
+        ctx.fillText("You didn't make it! :( Press spacebar to try again", canvas.width / 2, canvas.height / 2);
     }
 }
 

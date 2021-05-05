@@ -44,7 +44,7 @@ mouse.onload = function(){
     main()
 }
 //Fuel Var
-var startFuel = randomNumber(high = 920 , low = 750) 
+var startFuel = randomNumber(high = 910 , low = 750) 
 var fuel = startFuel
 var fullBarWidth = 512
 
@@ -102,7 +102,7 @@ function main() {
     ctx.drawImage(mouse, 550, 40, 95, 100)
     
 
-    if (xpos > finish +110 || fuel <= 0) {
+    if (xpos > finish +90 || fuel <= 0) {
         drawResults()
     }
 
@@ -197,7 +197,7 @@ function randomNumber(high, low) {
 //game finish text 
 
 function drawResults() {
-    if (xpos +110> finish) {
+    if (xpos +90> finish) {
         ctx.fillStyle = "white"
         ctx.font = "25px Verdana"
         ctx.textAlign = "center"

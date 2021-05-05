@@ -4,7 +4,7 @@ var ctx = canvas.getContext('2d')
 var timer = requestAnimationFrame(main)
 
 
-var xpos = 15
+var xpos = -3
 var start = 58
 var finish = 956
 
@@ -12,20 +12,39 @@ var finish = 956
 var gameOver = true
 
 // images
-var chi = new Image()
-chi.src = "images/chi.png"
-
-chi.onload = function () {
-    main()
-}
 var bath = new Image()
 bath.src = "images/bath.jpg"
+
 bath.onload = function () {
     main()
 }
-
+var no = new Image()
+no.src ="images/no.png"
+no.onLoad = function(){
+    main()
+}
+var spwy = new Image()
+spwy.src ="images/spwy.png"
+spwy.onload = function(){
+    main()
+}
+var soot = new Image()
+soot.src = "images/soot.png"
+soot.onload = function(){
+    main()
+}
+var nf = new Image()
+nf.src = "images/nf.png"
+nf.onload = function(){
+    main()
+}
+var mouse = new Image()
+mouse.src = "images/mouse.png"
+mouse.onload = function(){
+    main()
+}
 //Fuel Var
-var startFuel = randomNumber(800, 950)
+var startFuel = randomNumber(high = 920 , low = 790) 
 var fuel = startFuel
 var fullBarWidth = 512
 
@@ -47,14 +66,14 @@ function main() {
 
     //images
     ctx.drawImage(bath, 0, 0, 1024, 768)
-    ctx.drawImage(chi, xpos, canvas.height / 2 - 90, 100, 100)
+    ctx.drawImage(nf, 890, 440, 90, 280)
     
 
     if (gameOver) {
         ctx.fillStyle = "white"
         ctx.font = "25px Verdana"
         ctx.textAlign = "center"
-        ctx.fillText("Press the spacebar to start and help Chihro across the bath house", canvas.width / 2, canvas.height / 2)
+        ctx.fillText("Press the spacebar to start and help Chihro across the bathhouse!", canvas.width / 2, 200)
     }
     else {
         if (!gameOver && sec > 0) {
@@ -76,9 +95,14 @@ function main() {
     drawFuelBar()
     drawFuelText()
 
+    //sprite
+    ctx.drawImage(no, xpos, canvas.height / 2 -50, 160, 160)
+    ctx.drawImage(spwy, 625, 1, 375, 100,)
+    ctx.drawImage(soot, 25, 640, 222, 122)
+    ctx.drawImage(mouse, 550, 40, 95, 100)
+    
 
-
-    if (xpos > finish + 10 || fuel <= 0) {
+    if (xpos > finish +110 || fuel <= 0) {
         drawResults()
     }
 
@@ -129,7 +153,7 @@ function drawFuelBar() {
     ctx.strokeStyle = "white"
     ctx.strokeRect(start, 30, fullBarWidth, 15)
     ctx.lineWidth = 3
-    ctx.fillStyle = "rgba(214, 10, 10, 0.685)"
+    ctx.fillStyle = "rgba(43, 3, 8, 0.884)"
     ctx.fillRect(start, 30, fullBarWidth, 15)
 
     if (fuel > 0) {
@@ -173,7 +197,7 @@ function randomNumber(high, low) {
 //game finish text 
 
 function drawResults() {
-    if (xpos > finish) {
+    if (xpos +110> finish) {
         ctx.fillStyle = "white"
         ctx.font = "25px Verdana"
         ctx.textAlign = "center"

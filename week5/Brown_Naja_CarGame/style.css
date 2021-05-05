@@ -2,10 +2,19 @@ body,html{
     display: flex;
     justify-content: center;
     background-image: url(images/back.jpg);
-    background-size: contain;
     background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #canvas{
+    width: 1000px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 4px rgba(73, 2, 12, 0.884);
 
+    
 }
+
+
+
+
+

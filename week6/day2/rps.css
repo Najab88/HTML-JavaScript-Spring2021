@@ -1,0 +1,29 @@
+html,body,nav{
+    display: flex;
+    justify-content: center;
+   /*background-image: url(images/12.gif);*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: inherit;
+}
+nav{
+    background-image: none;
+}
+#container{
+    background-image: url(images/3QvS.txt);
+    background-position: center;
+background-repeat: no-repeat;
+background-size: 1020px 250px;
+
+    width: 1000px;
+    border: 3px groove rgb(44, 5, 88);
+padding: 5px 5px 10px 10px;
+background-color: rgba(188, 143, 143, 0.253);
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+color: rgb(56, 26, 5);
+}
+button{
+    border-radius: 10px;
+    background-color: skyblue;
+    border-style: groove;
+}

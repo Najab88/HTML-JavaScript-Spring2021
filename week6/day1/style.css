@@ -4,6 +4,9 @@ html,body{
 }
 
 #canvas{
-    background-color: black;
-    border: 3px solid purple
+    background-image: url(images/chi.jpg);
+    background-color: rgb(231, 66, 143);
+    border: 3px solid purple;
+    background-position: center;
+    background-size: 800px 600px;
 }

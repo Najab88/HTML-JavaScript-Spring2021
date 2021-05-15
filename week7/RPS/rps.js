@@ -31,11 +31,11 @@ function play(pChoice) {
 
     var cChoice = Math.floor(Math.random() * 2.999999)
 
-function main(){
-    clearRect(0,0, canvas.width, canvas.height)
-   
-   
-}
+    function main() {
+        clearRect(0, 0, canvas.width, canvas.height)
+
+
+    }
 
     switch (pChoice) {
         case 0:

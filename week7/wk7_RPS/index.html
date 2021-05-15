@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naja's RPS Game</title>
+    <link rel="stylesheet" href="rps.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+    
+</head>
+
+<body>
+
+    <section class="game">
+        <div class="score">
+            <div class="player-score">
+                <h2>Player</h2>
+                <p>0</p>
+            </div>
+            <div class="computer-score">
+                <h2>Computer</h2>
+                <p>0</p>
+            </div>
+        </div>
+
+        <div class="intro">
+            <h1> Let's play rock, paper, scissors!
+                <br>
+                <br>
+                 Push button to start
+            </h1>
+            <button>Play!</button>
+            
+        </div>
+
+        <div class="match fadeOut">
+            <h2 class="winner">Take Your Pick!</h2>
+            <div class="hands">
+                <img class="player-hand" src="images/rock.png" alt="Rock">
+                <img class="computer-hand" src="images/rock.png" alt="Rock">
+            </div>
+            <div class="options">
+                <button class="Rock">Rock</button>
+                <button class="Paper">Paper</button>
+                <button class="Scissors">Scissors</button>
+            </div>
+            
+        </div>
+    </section>
+
+    <script src="rps.js"></script>
+</body>
+
+</html>

@@ -2,9 +2,9 @@ html,body{
     margin: 0px;
     padding: 0;
     box-sizing: border-box;
-    background-image: url(images/dark.jpeg);
+    background-image: url(image/dark.jpeg);
     background-size: cover;
-    display: flex;
+   
     
 }
     

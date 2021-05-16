@@ -1,27 +1,43 @@
-* {
+html,body{
     margin: 0px;
     padding: 0;
     box-sizing: border-box;
+    background-image: url(images/dark.jpeg);
+    background-size: cover;
+    display: flex;
+    
 }
-
-section{
-    height:100vh;
-    background-image: url(image/dark.jpeg);
-    background-repeat: repeat;
-    font-family: 'Acme', sans-serif;
+    
+#container{
+    position: absolute; 
+	width: 300px; 
+	height: 100px; 
+	left: 45%; 
+	top: 50%; 
+	margin-left: -300px; /* This is half the width */ 
+	margin-top: -200px; /* This is half the height */ 
+    width:800px;
+    height: 675px;
+    border:5px groove rgb(238, 238, 238);
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px 15px black
+   
 }
-
 .score{
     color: rgb(240, 247, 247);
-    background-color: rgba(0, 0, 0, 0.562);
+    padding-left: 50px;
+    padding-right: 50px;
     height: 20vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    text-shadow: 0 0 5px rgb(6, 186, 241), 0 0 10px rgb(221, 60, 221), 0 0 30px #ddb7ca, 0 0 40px #181617, 0 0 50px #0d1725, 0 0 60px #e60073, 0 0 70px #e60073;
+    text-shadow: 0 0 5px rgb(6, 186, 241), 0 0 10px rgb(221, 60, 221), 0 0 30px 
+#ddb7ca, 0 0 40px #181617, 0 0 50px #0d1725, 0 0 60px #e60073, 0 0 70px 
+#e60073;
   }
   to {
-    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px 
+#ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
 }
 .score h2{
     font-size: 40px;
@@ -41,7 +57,7 @@ section{
 }
 
 .intro{
-    color: rgb(243, 243, 243);
+    color: rgba(18, 206, 231, 0.863);
     height: 60vh;
     display: flex;
     flex-direction: column;
@@ -52,7 +68,8 @@ section{
     font-variant: small-caps;
     justify-content: space-evenly;
     transition: opacity 0.2s ease;
-    text-shadow: 0 0 10px rgb(224, 10, 207), 0 0 5px rgb(98, 134, 231), 0 0 10px #042bd6, 0 0 5px 
+    text-shadow: 0 0 10px rgb(224, 10, 207), 0 0 5px rgb(98, 134, 231), 0 0 
+10px #042bd6, 0 0 5px 
   
   
   
@@ -100,7 +117,7 @@ font-family: 'Acme', sans-serif;
      0 10px #042bd6, 0 0 5px;
     text-align: center;
     font-family: 'Acme', sans-serif;
-    font-size: 50px;
+    font-size: 40px;
     height: 15vh;
 }
 .hands{

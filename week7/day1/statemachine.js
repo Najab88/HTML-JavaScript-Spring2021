@@ -4,7 +4,8 @@ var ctx = canvas.getContext('2d')
 var timer = requestAnimationFrame(main)
 var gameStates = []
 var currentState = 0
-var x = 10
+var pScore = 5
+var cScore = 5
 var gameOver = true
 
 //setup Key Presses
@@ -53,12 +54,9 @@ gameStates[1] = function () {
     ctx.fillRect(x, canvas.height / 2, 100, 50)
     x += 5
 
-    if (x > 600) {
-        x = 10
+    if (pScore > 5) {
         gameOver = true
-        currentState++
         
-
     }
 }
 

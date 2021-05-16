@@ -1,0 +1,17 @@
+body,html{
+
+    display: flex;
+   justify-content: center;
+   background-image: url(images/dark.jpeg);
+    
+}
+canvas {
+    
+background-image: url(images/dark.jpeg);
+       
+        border: 5px solid rgba(245, 240, 240, 0.404);
+        background-position: center;
+        background-size: 800px 600px;
+    border-radius: 15px;
+    box-shadow: 12px rgba(255, 248, 220, 0.534);
+}

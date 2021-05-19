@@ -67,18 +67,18 @@ const game = () => {
       const winner = document.querySelector(".winner")
       //Checking for a tie
       if (playerChoice === computerChoice) {
-          winner.textContent = "It is a tie"
+          winner.textContent = "Tie!"
           return
       }
       //Check for Rock
       if (playerChoice === "rock") {
           if (computerChoice === "scissors") {
-              winner.textContent = "Player Wins"
+              winner.textContent = "You Win!"
               pScore++
               updateScore()
               return
           } else {
-              winner.textContent = "Computer Wins"
+              winner.textContent = "Computer Wins!"
               cScore++
               updateScore()
               return
@@ -87,12 +87,12 @@ const game = () => {
       //Check for Paper
       if (playerChoice === "paper") {
           if (computerChoice === "scissors") {
-              winner.textContent = "Computer Wins"
+              winner.textContent = "Computer Wins!"
               cScore++
               updateScore()
               return
           } else {
-              winner.textContent = "Player Wins"
+              winner.textContent = "You Win!"
               pScore++
               updateScore()
               return
@@ -101,12 +101,12 @@ const game = () => {
       //Check for Scissors
       if (playerChoice === "scissors") {
           if (computerChoice === "rock") {
-              winner.textContent = "Computer Wins"
+              winner.textContent = "Computer Wins!"
               cScore++
               updateScore()
               return
           } else {
-              winner.textContent = "Player Wins"
+              winner.textContent = "You Win!"
               pScore++
               updateScore()
               return

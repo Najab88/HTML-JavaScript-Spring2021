@@ -1,41 +1,62 @@
 var canvas = document.getElementById('canvas')
 var ctx = canvas.getContext('2d')
 var timer = requestAnimationFrame(main)
-
-//start ship
 var ship
 
-//start asteroids
 var numAsteroids = 20
 var asteroids = new Array()
-
-//ends game when roids hit
 var gameOver = true
-
-//menu screens start, middle, end
 var gameStates = []
-//main menu
 var currentState = 0
-
-//score
 var score = 0
 var highScore = 0
 
+var first = new Image()
+first.src = "images/first.png"
+
+first.onload = function () {
+    main()
+}
+var end = new Image()
+end.src = "images/end.png"
+
+end.onload = function () {
+    main()
+}
+var sky = new Image()
+sky.src = "images/sky.png"
+
+sky.onload = function () {
+    main()
+}
+var haku = new Image()
+haku.src = "images/haku.png"
+
+haku.onload = function () {
+    main()
+}
+var paper = new Image()
+paper.src = "images/paper.png"
+
+paper.onload = function () {
+    main()
+}
 //start asteroids function
 function randomRange(high, low) {
     return Math.random() * (high - low) + low
 }
 
-function gameStart(){
+function gameStart() {
 
-//creat an instance of the player ship 
-ship = new PlayerShip()
+    //creat an instance of the player ship 
+    ship = new PlayerShip()
+    
 
-//for loop to create the instances of asteroids
-for (var i = 0; i < numAsteroids; i++) {
-    asteroids[i] = new Asteroid()
+    //for loop to create the instances of asteroids
+    for (var i = 0; i < numAsteroids; i++) {
+        asteroids[i] = new Asteroid()
 
-}
+    }
 
 
 }
@@ -61,6 +82,9 @@ function Asteroid() {
         ctx.fill()
         ctx.restore()
     }
+    this.drawImage = function(){
+        
+    }
 }
 
 //set up keyboard event handlers (moves ship around canvas)
@@ -85,29 +109,29 @@ function pressKeyDown(e) {
 
     if (gameOver) {
         if (e.keyCode == 32) {
-           if(currentState == 2){
-               //game over screen, restarts screen
-               currentState = 0
+            if (currentState == 2) {
+                //game over screen, restarts screen
+                currentState = 0
 
-               //rests num of roids
-               numAsteroids = 10
-               //empties roid array
-               asteroids = []
-               //resets score
-               score = 0
-               gameStart()
-            main()
-           }
-           else{
-               //main screen starts the game
-               gameStart()
-               currentState = 1
-               gameOver = false
-               main ()
-               scoreTimer()
-               console.log("space")
-               
-           }
+                //rests num of roids
+                numAsteroids = 10
+                //empties roid array
+                asteroids = []
+                //resets score
+                score = 0
+                gameStart()
+                main()
+            }
+            else {
+                //main screen starts the game
+                gameStart()
+                currentState = 1
+                gameOver = false
+                main()
+                scoreTimer()
+                console.log("space")
+
+            }
         }
     }
 }
@@ -152,6 +176,8 @@ function PlayerShip() {
     this.flamelength = 30
 
     //draw ship
+
+
     this.drawShip = function () {
         //negative is up, positive is down
         //shipY -= 1
@@ -234,6 +260,8 @@ function PlayerShip() {
 
 //main menu screen
 gameStates[0] = function () {
+    ctx.drawImage(first, 0,0,1000,720)
+
     ctx.save()
     ctx.font = "30px Arial"
     ctx.fillStyle = "white"
@@ -242,10 +270,13 @@ gameStates[0] = function () {
     ctx.font = "15px Arial"
     ctx.fillText("Press Space To Start!", canvas.width / 2, canvas.height / 2 + 20)
     ctx.restore()
+    
 }
 //game screen
 gameStates[1] = function () {
+    
 
+    ctx.drawImage(sky, 0,0,1000,720)
     //code for displaying score
     ctx.save()
     ctx.font = "15px Arial"
@@ -300,39 +331,42 @@ gameStates[1] = function () {
         ship.drawShip()
     }
 
-    while(asteroids.length < numAsteroids){
-        asteroids.push( new Asteroid())
+    while (asteroids.length < numAsteroids) {
+        asteroids.push(new Asteroid())
     }
+    
 }
 //game over
 gameStates[2] = function () {
+    ctx.drawImage(end, 0,0,1000,720)
     //saves score on menu screen
-    if(score > highScore){
+    if (score > highScore) {
         //set a new high score
         highScore = score
         ctx.save()
-ctx.font = "30px Arial"
-ctx.fillStyle = "white"
-ctx.textAlign = "center"
-ctx.fillText("Game over, your score is:  " + score.toString() , canvas.width / 2, canvas.height / 2 - 60)
-ctx.fillText(" Your new high score is:  " + highScore.toString() , canvas.width / 2, canvas.height / 2 - 30)
-ctx.fillText("New Record!", canvas.width / 2, canvas.height / 2)
-ctx.font = "15px Arial"
-ctx.fillText("Press Space To Play Again!", canvas.width / 2, canvas.height / 2 + 20)
-ctx.restore()
-    }else{
+        ctx.font = "30px Arial"
+        ctx.fillStyle = "white"
+        ctx.textAlign = "center"
+        ctx.fillText("Game over, your score is:  " + score.toString(), canvas.width / 2, canvas.height / 2 - 60)
+        ctx.fillText(" Your new high score is:  " + highScore.toString(), canvas.width / 2, canvas.height / 2 - 30)
+        ctx.fillText("New Record!", canvas.width / 2, canvas.height / 2)
+        ctx.font = "15px Arial"
+        ctx.fillText("Press Space To Play Again!", canvas.width / 2, canvas.height / 2 + 20)
+        ctx.restore()
+    } else {
         //keep same score new high score1
         ctx.save()
-ctx.font = "30px Arial"
-ctx.fillStyle = "white"
-ctx.textAlign = "center"
-ctx.fillText("Game over, your score was:" + score.toString() , canvas.width / 2, canvas.height / 2 - 60)
-ctx.fillText(" your high score is:" + highScore.toString() , canvas.width / 2, canvas.height / 2 - 30)
-ctx.font = "15px Arial"
-ctx.fillText("Press Space To Play Again!", canvas.width / 2, canvas.height / 2 + 20)
-ctx.restore()
+        ctx.font = "30px Arial"
+        ctx.fillStyle = "white"
+        ctx.textAlign = "center"
+        ctx.fillText("Game over, your score was:" + score.toString(), canvas.width / 2, canvas.height / 2 - 60)
+        ctx.fillText(" your high score is:" + highScore.toString(), canvas.width / 2, canvas.height / 2 - 30)
+        ctx.font = "15px Arial"
+        ctx.fillText("Press Space To Play Again!", canvas.width / 2, canvas.height / 2 + 20)
+        ctx.restore()
+        
     }
-
+    
 }
 //rotate ship var degree = 0
 
@@ -346,6 +380,7 @@ function main() {
     if (!gameOver) {
         timer = requestAnimationFrame(main)
     }
+    
 }
 
 function detectCollision(distance, calcDistance) {
@@ -354,20 +389,20 @@ function detectCollision(distance, calcDistance) {
 }
 
 //timer for score
-function scoreTimer(){
-    if(!gameOver){
-score++
+function scoreTimer() {
+    if (!gameOver) {
+        score++
 
-//using modulus that return remainder of a decimal
+        //using modulus that return remainder of a decimal
 
-//check to see if remainder is divisible by 5
-if(score % 5 == 0){
-    numAsteroids += 3
-    console.log (numAsteroids)
+        //check to see if remainder is divisible by 5
+        if (score % 5 == 0) {
+            numAsteroids += 3
+            console.log(numAsteroids)
 
-}
+        }
 
-setTimeout(scoreTimer, 1000)
+        setTimeout(scoreTimer, 1000)
     }
 
 }

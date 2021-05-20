@@ -1,0 +1,10 @@
+html,body{
+    display: flex;
+    justify-content: center;
+  
+    background-image: url(images/bg.png);
+    background-position: center;
+    background-size: cover;
+}
+#canvas{
+    border: 5px groove rgb(12, 240, 229);}

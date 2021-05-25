@@ -5,9 +5,25 @@ html,body{
     background-image: url(images/bg.png);
     background-position: center;
     background-size: cover;
+    
 }
 #canvas{
     border: 5px groove rgb(114, 235, 229);
 box-shadow: 5px 5px 5px  rgba(255, 255, 255, 0.562);
 }
+.copy{
+    color: rgba(245, 245, 245, 0.315);
+    font-size: 12pt;
+    padding: 10px;
+    height: 10px;
+    font-family: 'Acme', sans-serif;
+}
+footer {
+   position: fixed;
+    bottom: 25px;
+    width: 65%;
+    color: black;
+    text-align: center;
+}
+
     

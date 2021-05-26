@@ -122,10 +122,10 @@ function PowerUp() {
         radius) - canvas.width
     this.y = randomRange(canvas.height - this.radius, this.
         radius) - canvas.height //pushes off screen
-    this.vx = randomRange(-20, -5)
+    this.vx = randomRange(-8, -5)
     this.color = "red"
 
-    //draw asteroid
+    //draw powerup
     this.drawPowerUp = function () {
 
         ctx.save()

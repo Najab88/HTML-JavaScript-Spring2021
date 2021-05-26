@@ -18,6 +18,7 @@ var isInv = false
 
 
 
+
 var first = new Image()
 first.src = "images/first.png"
 
@@ -64,6 +65,12 @@ oni.src = "images/oni.png"
 oni.onload = function () {
     main()
 }
+var hkglw = new Image()
+hkglw.src = "images/hkglw.png"
+
+hkglw.onload = function () {
+    main()
+}
 
 function gameStart() {
 
@@ -88,7 +95,7 @@ function gameStart() {
 
 //asteriod class (constructor function)
 function Asteroid() {
-    this.radius = randomRange(65, 51)//sizes
+    this.radius = randomRange(79, 41)//sizes
     this.x = randomRange(canvas.width - this.radius, this.radius) - canvas.width
     this.y = randomRange(canvas.height - this.radius, this.radius) - canvas.height //pushes off screen
     this.vx = randomRange(-10, -5)
@@ -110,12 +117,12 @@ function Asteroid() {
     }
 }
 function PowerUp() {
-    this.radius = randomRange(35, 21)//sizes
+    this.radius = randomRange(55, 21)//sizes
     this.x = randomRange(canvas.width - this.radius, this.
         radius) - canvas.width
     this.y = randomRange(canvas.height - this.radius, this.
         radius) - canvas.height //pushes off screen
-    this.vx = randomRange(-10, -5)
+    this.vx = randomRange(-20, -5)
     this.color = "red"
 
     //draw asteroid
@@ -467,6 +474,8 @@ function detectCollision(distance, calcDistance) {
     return distance < calcDistance
 
 }
+
+//set inv
 function setInvincible() {
     if (isInv == false) {
         isInv = true

@@ -399,6 +399,8 @@ gameStates[1] = function () {
 
         if (detectCollision(distance, (ship.h / 2 +power[i].radius))) {
          console.log("hit powerup") 
+         power[i].x = randomRange(canvas.width -power[i].radius, power[i].radius) +canvas.width
+         power[i].y = randomRange(canvas.height -power[i].radius, power[i].radius) 
          if(isInv == false){
             setInvincible()}
         }

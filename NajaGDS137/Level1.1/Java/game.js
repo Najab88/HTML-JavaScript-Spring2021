@@ -1,17 +1,33 @@
 var canvas = document.getElementById('canvas')
 var ctx = canvas.getContext('2d')
 
-var ball = new Ball()
 
-//circle 1
-function Ball (draw,move)
+//timer
+var timer
+var interval = 1000/60
+timer = setInterval(animate, interval)
+
+
+//draws ball on screen
+var ball = new Ball ()
+
+
+//ball movement
+
+function animate()
 {
-ctx.beginPath()
-ctx.fillStyle = "cyan"
-ctx.strokeStyle = "black"
-ctx.lineWidth = 5
-ctx.arc(400,300,50,0,360*Math.PI/180,true)
-ctx.stroke()
-ctx.closePath();
-ctx.fill();
+    //clear canvas
+    ctx.clearRect(0,0,canvas.width, canvas.height)
+
+    ctx.ball +=2
+
+    ball.draw(ctx)
 }
+
+
+
+
+
+
+
+

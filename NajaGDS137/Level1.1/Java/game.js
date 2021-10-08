@@ -1,33 +1,31 @@
-var canvas = document.getElementById('canvas')
-var ctx = canvas.getContext('2d')
+canvas = document.getElementById("canvas")
+ctx = canvas.getContext("2d")
 
-
-//timer
+var canvas
+var ctx
 var timer
-var interval = 1000/60
+
+
+var interval = 1000 / 60
+var ball
+
+
+
 timer = setInterval(animate, interval)
 
+function animate() {
+	x = canvas.width 
+    y = canvas.height /2 
+	ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-//draws ball on screen
-var ball = new Ball ()
+	ball = new Ball()
+	ball.x += 2
+
+    ctx.fillStyle = "purple"
+    ctx.arc (x,y,50 ,0, 360 * Math.PI / 180, true)
 
 
-//ball movement
 
-function animate()
-{
-    //clear canvas
-    ctx.clearRect(0,0,canvas.width, canvas.height)
 
-    ctx.ball +=2
-
-    ball.draw(ctx)
+	ball.draw()
 }
-
-
-
-
-
-
-
-

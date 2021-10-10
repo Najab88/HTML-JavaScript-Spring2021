@@ -9,7 +9,7 @@ ctx.lineWidth = "5"
 ctx.strokeRect(85, 301, 100, 100)
 ctx.fillRect(85, 301, 100, 100)
 
-//2. Scircle
+//2. circle
 
 ctx.fillStyle = "#ffff00"
 ctx.strokeStyle = "red"

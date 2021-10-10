@@ -5,7 +5,7 @@ var ctx = canvas.getContext('2d')
 // this is speed of ball
 var timer
 timer = setInterval(animate, interval)
-var interval = 1000 / .000001
+var interval = 1000 / .1
 
 
 //ball size
@@ -39,10 +39,10 @@ function animate() {
     ctx.stroke();
     ctx.fill()
 
-    //update position
-    
-    
 
+    
+    
+    //update position
     if(x + bx > canvas.width-radius || x + bx < radius) {
         bx = -bx;
     }

@@ -1,22 +1,22 @@
 
 function GameObject() {
-	//player 1 location
-	this.rx = 75
-	this.ry = canvas.height / 2
+	//paddle canvas location
+	this.rx = 25 //left
+	this.ry = 300 //middle
 
 	//ball location
 	this.bx = canvas.width / 2
 	this.by = canvas.height / 2
 
-	//player 1 dimensions
+	//paddle size
 	this.rwidth = 15
-	this.rheight = 75
+	this.rheight = 70
 
-	//ball dimensions
+	//ball size
 	this.width = 100
 	this.height = 300
 
-	//player 1 speed
+	//paddle speed
 	this.vx = 0
 	this.vy = 0
 
@@ -24,7 +24,7 @@ function GameObject() {
 	this.bsvx = 4
 	this.bsvy = 4
 
-	//player color
+	//paddle color
 	this.color = "pink"
 	//ball color
 	this.bcolor = "pink"
@@ -39,9 +39,9 @@ function GameObject() {
 		ctx.fillStyle = this.bcolor
 		ctx.strokeStyle = "rgb(230, 24, 144)"
 		ctx.lineWidth = "5"
-		ctx.beginPath();
+		ctx.beginPath()
 		ctx.arc(this.bx, this.by, this.radius, 0, 360 * Math.PI / 180, true);
-		ctx.stroke();
+		ctx.stroke()
 		ctx.fill()
 		ctx.restore()
 
@@ -49,9 +49,9 @@ function GameObject() {
 	// draw rect
 	this.drawRect = function () {
 		ctx.save()
-		ctx.fillStyle = this.color;
+		ctx.fillStyle = this.color
 		ctx.translate(this.rx, this.ry)
-		ctx.fillRect((-this.rwidth / 2), (-this.rheight / 2), this.rwidth, this.rheight)
+		ctx.fillRect((-this.rwidth), (-this.rheight / 12), this.rwidth, this.rheight)
 		ctx.restore()
 
 	}

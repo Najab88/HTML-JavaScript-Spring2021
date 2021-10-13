@@ -3,7 +3,7 @@ canvas
 	
     border: 4px inset rgb(230, 24, 144);
     border-radius: 25px;
-    box-shadow: 3px 3px 3px 8px rgba(231, 6, 164, 0.575);
+    /*box-shadow: 3px 3px 3px 8px rgba(231, 6, 164, 0.575);*/
     background-color: rgb(19, 0, 17);
 }
 

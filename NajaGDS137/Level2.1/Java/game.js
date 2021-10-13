@@ -34,17 +34,29 @@ function animate()
     ball.by += ball.bsvy
 
 // keypresses
+if(w)
+	{
+	//moves up speed -
+		player1.ry += -8
+       if (player1.ry < 8){
+            player1.ry = 8
+        }
+        
+
+        
+	}
     if(s)
 	{
-		//moves down speed
+		//moves down speed +
 		player1.ry += 8
+
+        if (player1.ry + player1.rheight > canvas.height){
+            player1.ry = canvas.height - player1.rheight;
+        }
+        
 	}
 	
-	if(w)
-	{
-	//moves up speed
-		player1.ry += -8
-	}
+	
 
 
     // makes the ball move/change color

@@ -8,14 +8,18 @@ var timer
 var interval = 1000/60
 timer = setInterval(animate, interval)
 
-//rectangle
-var player1
-player1 = new GameObject()
-	
+
 //ball
 var ball
 ball = new GameObject()
 	
+//paddle
+var player1
+player1 = new GameObject()
+
+
+	
+
 
 function animate()
 {
@@ -23,22 +27,38 @@ function animate()
 	ctx.clearRect(0,0,canvas.width, canvas.height)
 	
 	//rectangle
-	player1.x += 0
+	player1.rx += 0
 	
     //ball
-    ball.x += ball.vx
-    ball.y += ball.vy
+    ball.bx += ball.bsvx
+    ball.by += ball.bsvy
 
-    if (ball.x > canvas.width - ball.radius || ball.x - ball.radius < 0) {
-        ball.vx = -ball.vx
-        ball.color = "black"
+// keypresses
+    if(s)
+	{
+		//moves down speed
+		player1.ry += 8
+	}
+	
+	if(w)
+	{
+	//moves up speed
+		player1.ry += -8
+	}
+
+
+    // makes the ball move/change color
+    if (ball.bx > canvas.width - ball.radius || ball.bx - ball.radius < 0) {
+        ball.bsvx = -ball.bsvx
+        ball.bcolor = "pink"
+        
 
     }
-    if (ball.y > canvas.height - ball.radius || ball.y - ball.radius < 0) {
-        ball.vy = -ball.vy
-        ball.color = "pink"
+    if (ball.by > canvas.height - ball.radius || ball.by - ball.radius < 0) {
+        ball.bsvy = -ball.bsvy
+        ball.bcolor = "black"
     }
 	//Update the Screen
 	player1.drawRect()
-    ball.drawCricle()
+    ball.drawCircle()
 }

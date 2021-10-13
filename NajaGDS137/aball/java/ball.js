@@ -5,54 +5,40 @@ var ctx = canvas.getContext('2d')
 // this is speed of ball
 var timer
 timer = setInterval(animate, interval)
-var interval = 1000 / .1
+var interval = 1000 / 60
 
+var ball
 
-//ball size
-var x = 100
-var y = 300
-var radius = 60
+ball = new Ball()
 
 //ball position
-var bx = 2
-var by = -2
-
-
-
+//var bx = 2
+//var by = -2
 //this is where you make ball move
 function animate() {
-
+    
     // clear the screen
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    
-   
-    
-    x += bx;
-    y += by;
+
+    ball.x += ball.vx
+    ball.y += ball.vy
 
     //draw the ball
-    ctx.fillStyle = "pink"
-    ctx.strokeStyle = "cyan"
-    ctx.lineWidth = "5"
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, 360 * Math.PI/180, true);
-    ctx.stroke();
-    ctx.fill()
 
 
-    
-    
     //update position
-    if(x + bx > canvas.width-radius || x + bx < radius) {
-        bx = -bx;
+    if (ball.x > canvas.width - ball.radius || ball.x - ball.radius < 0) {
+        ball.vx = -ball.vx
+        ball.color = "black"
+
     }
-    if(y + by > canvas.height-radius || y + by < radius) {
-        by = -by;
+    if (ball.y > canvas.height - ball.radius || ball.y - ball.radius < 0) {
+        ball.vy = -ball.vy
+        ball.color = "pink"
     }
-    
-  
+
+    ball.draw()
 
 
-    timer = setInterval(animate,interval)
 
 }

@@ -9,68 +9,80 @@ var interval = 1000/60
 timer = setInterval(animate, interval)
 
 
-//ball
-var ball
-ball = new GameObject()
+//stops the player from moving through obstacles.
+var prevX
 	
-//paddle
-var player1
-player1 = new GameObject()
-
-
+	// this is the paddle
+	paddle = new GameObject()
+    var paddle
+	paddle.x = 35
+    paddle.y = 300
+    paddle.w = 15
+    paddle.h = 105
 	
+	
+    // this is the ball
+	ball = new GameObject()
+    var ball
+    ball.x= 400
+    ball.y = 300
+    ball.r = 25
+   
+    
 
+	//Animation Timer
+	timer = setInterval(animate, interval)
 
 function animate()
 {
-	//Erase the Screen
+	//clear the screen
 	ctx.clearRect(0,0,canvas.width, canvas.height)
 	
-	//rectangle
-	player1.rx += 0
 	
-    //ball
-    ball.bx += ball.bsvx
-    ball.by += ball.bsvy
-
-// keypresses
-if(w)
+	//keypresses
+	
+    if(w)
 	{
-	//moves up speed -
-		player1.ry += -8
-       if (player1.ry < 8){
-            player1.ry = 8
-        }
-        
-
-        
+	//moves up 
+    paddle.y += -8 
 	}
     if(s)
 	{
-		//moves down speed +
-		player1.ry += 8
-
-        if (player1.ry + player1.rheight > canvas.height){
-            player1.ry = canvas.height - player1.rheight;
-        }
+		//moves down 
+		paddle.y += 8
         
+	}
+
+    ball.x += ball.vx
+    ball.y += ball.vy
+
+    if (ball.x > canvas.width - ball.r || ball.x - ball.r < 0) {
+        ball.vx = -ball.vx
+        ball.color = "pink"
+        
+
+    }
+    if (ball.y > canvas.height - ball.r || ball.y - ball.r < 0) {
+        ball.vy = -ball.vy
+        ball.color = "black"
+    }else if (canvas.height + ball.vx > canvas.width +ball.r)
+    {
+        ball.vy = -ball.vy
+    }
+    if(ball.hitObject(paddle))
+	{
+		ball.x = canvas.width -150
+		console.log("colliding")
+	}
+	else
+	{
+		prevX = ball.x
 	}
 	
 	
+	
+	//draw on the Screen
+	paddle.drawRect()
+	ball.drawCircle()
 
-
-    // makes the ball move/change color
-    if (ball.bx > canvas.width - ball.radius || ball.bx - ball.radius < 0) {
-        ball.bsvx = -ball.bsvx
-        ball.bcolor = "pink"
-        
-
-    }
-    if (ball.by > canvas.height - ball.radius || ball.by - ball.radius < 0) {
-        ball.bsvy = -ball.bsvy
-        ball.bcolor = "black"
-    }
-	//Update the Screen
-	player1.drawRect()
-    ball.drawCircle()
 }

@@ -13,24 +13,29 @@ timer = setInterval(animate, interval)
 var prevX
 
 // this is the paddle
-paddle = new GameObject()
-var paddle
+var paddle = new GameObject()
+
 
 //paddle position
 paddle.x = 35
 paddle.y = 55
 
 //paddle size
-paddle.w = 15
-paddle.h = 105
+paddle.width = 15
+paddle.height = 105
 
 
 // this is the ball
-ball = new GameObject()
-var ball
+var ball = new GameObject()
 ball.x = 400
 ball.y = 300
-ball.r = 25
+ball.width = 30
+ball.vx = -2
+ball.vy = 0
+
+
+
+
 
 
 
@@ -58,32 +63,41 @@ function animate() {
 	ball.y += ball.vy
 
 	//paddle restriction
-	if(paddle.y + paddle.h > canvas.height + paddle.h/2)
+	if(paddle.y + paddle.height > canvas.height + paddle.height/2)
 	{
-		paddle.y = canvas.height - paddle.h /2
+		paddle.y = canvas.height - paddle.height /2
 	}
-	if( paddle.y < 0 + paddle.h/2 )
+	if( paddle.y < 0 + paddle.height/2 )
 	{
-		paddle.y = 0 + paddle.h/2
+		paddle.y = 0 + paddle.height/2
 	}
 	
 	// ball movement
-	if (ball.x > canvas.width - ball.r) //|| ball.x - ball.r < 0) 
+	if (ball.x > canvas.width - ball.width/2) //|| ball.x - ball.r < 0) 
 	{
+		ball.x = canvas.width - ball.width/2
+
 		ball.vx = -ball.vx
 		ball.color = "pink"
 
 
 	}
-	if (ball.y > canvas.height - ball.r || ball.y - ball.r < 10) {
+	if (ball.y > canvas.height - ball.width/2) {
+
+		ball.y = canvas.height - ball.width/2
+		ball.vy = -ball.vy
+		ball.color = "black"
+	}
+	if ( ball.y < 0 -ball.width/2) {
+		ball.y = 0 -ball.width/2
 		ball.vy = -ball.vy
 		ball.color = "black"
 	}
 
 	// puts ball back in mid of canvas
-	if(ball.x -ball.r < 0)
-
+	if(ball.x  < 0-ball.width / 2)
     {
+	
         ball.x = canvas.width/2
         ball.y = canvas.height/2
 
@@ -93,6 +107,7 @@ function animate() {
 	if (ball.hitObject(paddle)) {
 		//bounce against paddle
 
+        ball.x = paddle.x + paddle.width / 2 + ball.width / 2
 
 		ball.vx = -ball.vx
 		ball.color = "pink"

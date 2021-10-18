@@ -1,4 +1,10 @@
+//do not change this file!!!!
+
+
+
+
 function GameObject(x, y, w, h, color)
+
  {
 
 	//Default Values
@@ -37,7 +43,7 @@ function GameObject(x, y, w, h, color)
 		ctx.save()
 		ctx.fillStyle = "violet"
 		ctx.translate(this.x, this.y)
-		ctx.fillRect((-this.width / 2), (-this.height / 2), this.w, this.h)
+		ctx.fillRect((-this.width / 2), (-this.height / 2), this.width, this.height)
 		ctx.restore()
 
 	}

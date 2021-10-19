@@ -32,7 +32,7 @@ function animate()
 	//showFriction();
 	//showGravity();
 	//showPixelLock();
-	showBounce();
+	//showBounce();
 	
 	player.drawRect();
 }

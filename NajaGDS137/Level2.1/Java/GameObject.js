@@ -33,8 +33,11 @@ function GameObject(x, y, w, h, color)
 		this.color = color
 
 	//player's velocity or speed on each axis
-	this.vx = 2
-	this.vy = 2
+	this.vx = 0
+	this.vy = 0
+
+	//force
+	this.force = 1
 
 
 

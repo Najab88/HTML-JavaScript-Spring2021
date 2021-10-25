@@ -10,15 +10,21 @@ timer = setInterval(animate, interval)
 
 // this is the paddle
 var paddle = new GameObject()
-
+var paddle2 = new GameObject()
 
 //paddle position
 paddle.x = 35
 paddle.y = canvas.height / 2
+//player2
+paddle2.x = 765
+paddle2.y = canvas.width / 2
 
 //paddle size
 paddle.width = 15
 paddle.height = 105
+//player 2
+paddle2.width = 15
+paddle2.height = 105
 
 
 // ball position
@@ -53,26 +59,29 @@ function animate() {
 		paddle.y += 8
 
 	}
+	// second player key presses
+	if (ArrowUp) {
+		paddle2.y += -8
+	}
+	if (ArrowDown) {
+		paddle2.y += 8
+	}
 
 	ball.x += ball.vx
 	ball.y += ball.vy
 
-	//paddle restriction
-	if (paddle.y + paddle.height > canvas.height + paddle.height / 2) {
-		paddle.y = canvas.height - paddle.height / 2
-	}
-	if (paddle.y < 0 + paddle.height / 2) {
-		paddle.y = 0 + paddle.height / 2
-	}
+//paddle restriction
 
+pad(paddle)
+pad (paddle2)
 
 
 	// ball boundry left side screen
-	if (ball.x > canvas.width - ball.width / 2) {
-		ball.x = canvas.width - ball.width / 2
-		ball.vx = -ball.vx
-		ball.color = "white"
-	}
+	//if (ball.x > canvas.width - ball.width / 2) {
+		//ball.x = canvas.width - ball.width / 2
+		//ball.vx = -ball.vx
+		//ball.color = "white"
+	//}
 
 	// ball boundry bottom screen
 	if (ball.y > canvas.height - ball.width / 2) {
@@ -89,6 +98,11 @@ function animate() {
 
 	// puts ball back in mid of canvas
 	if (ball.x < 0 - ball.width / 2) {
+
+		ball.x = canvas.width / 2
+		ball.y = canvas.height / 2
+	}
+	if (ball.x > canvas.width + ball.width / 2) {
 
 		ball.x = canvas.width / 2
 		ball.y = canvas.height / 2
@@ -110,13 +124,36 @@ function animate() {
 			ball.vy = ball.force
 		}
 	}
+	// ball collision paddle 2
+	if (ball.hitObject(paddle2)) {
 
+		ball.color = "red"
+
+		ball.x = paddle2.x - paddle2.width / 2 - ball.width / 2
+		ball.vx = -ball.vx
+
+		if (ball.y < paddle2.y - paddle2.y / 7) {
+
+			ball.vy = -ball.force
+		}
+		if (ball.y > paddle2.y + paddle2.height / 7) {
+			ball.vy = ball.force
+		}
+	}
 
 	//draws to screen
 	ball.drawCircle()
 	paddle.drawRect();
+	paddle2.drawRect()
 }
-
+function pad(pad) {
+	if (pad.y + pad.height > canvas.height + pad.height / 2) {
+		pad.y = canvas.height - pad.height / 2
+	}
+	if (pad.y < 0 + pad.height / 2) {
+		pad.y = 0 + pad.height / 2
+	}
+}
 
 
 

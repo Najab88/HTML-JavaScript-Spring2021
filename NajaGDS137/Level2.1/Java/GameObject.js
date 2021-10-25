@@ -1,8 +1,5 @@
 //do not change this file!!!!
 
-
-
-
 function GameObject(x, y, w, h, color)
 
  {
@@ -64,7 +61,6 @@ function GameObject(x, y, w, h, color)
 		ctx.fill()
 		ctx.restore()
 
-		
 	}
 
 	//This changes the player's position

@@ -92,14 +92,7 @@ function animate() {
 	pad(paddle)
 	pad(paddle2)
 
-	 //ball boundry right side screen
-	//if (ball.x > canvas.width - ball.width / 2) {
-
-		
-		//reset()
-	//}
-
-
+	
 	// ball boundry bottom screen
 	if (ball.y > canvas.height - ball.width / 2) {
 		ball.y = canvas.height - ball.width / 2

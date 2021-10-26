@@ -41,11 +41,6 @@ ball.width = 20
 ball.vx = -3
 ball.vy = 1
 
-//middle divider
-var div = new GameObject()
-div.width = 2
-div.height = canvas.height
-div.x = canvas.width / 2
 
 // player score
 var score = new GameObject()
@@ -61,7 +56,15 @@ function animate() {
 	//clear the screen
 	ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-
+	ctx.save()
+    ctx.strokeStyle = "pink"
+    ctx.beginPath()
+    ctx.moveTo(canvas.width/2, 0)
+    ctx.lineTo(canvas.width/2, 800)
+    ctx.closePath()
+    ctx.lineWidth = 5
+    ctx.stroke()
+    ctx.restore()
 	//keypresses
 
 	if (w) {
@@ -139,13 +142,12 @@ function animate() {
 
 			ball.vy = -ball.force
 		}
-		if (ball.y > paddle2.y + paddle2.height / 6) {
+		if (ball.y > paddle2.y + paddle2.height / 7) {
 			ball.vy = ball.force
 		}
 	}
 
 	//draws to screen
-	div.drawRect()
 	ball.drawCircle()
 	paddle.drawRect()
 	paddle2.drawRect()

@@ -47,7 +47,7 @@ function GameObject(x, y, w, h, color) {
 	//This draws the player to the screen
 	this.drawRect = function () {
 		ctx.save()
-		ctx.fillStyle = "violet"
+		ctx.fillStyle = this.color
 		ctx.translate(this.x, this.y)
 		ctx.fillRect((-this.width / 2), (-this.height / 2), this.width, this.height)
 		ctx.restore()

@@ -12,7 +12,9 @@ timer = setInterval(animate, interval)
 score = 0
 // this is the paddle
 var paddle = new GameObject()
+paddle.color = "rgb(230, 24, 144)"
 var paddle2 = new GameObject()
+paddle2.color = "rgb(134, 10, 236)"
 
 //paddle position
 paddle.x = 35
@@ -57,7 +59,7 @@ function animate() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height)
 
 	ctx.save()
-    ctx.strokeStyle = "pink"
+    ctx.strokeStyle = "rgba(231, 6, 164)"
     ctx.beginPath()
     ctx.moveTo(canvas.width/2, 0)
     ctx.lineTo(canvas.width/2, 800)
@@ -115,7 +117,7 @@ function animate() {
 
 		ball.x = paddle.x + paddle.width / 2 + ball.width / 2
 		ball.vx = -ball.vx
-		ball.color = "cyan"
+		ball.color = "rgb(230, 24, 144)"
 		if (ball.y < paddle.y - paddle.y / 6) {
 
 			ball.vy = -ball.force
@@ -130,7 +132,7 @@ function animate() {
 		
 		ball.x = paddle2.x - paddle2.width / 2 - ball.width / 2
 		ball.vx = -ball.vx
-		ball.color = "magenta"
+		ball.color = "rgb(134, 10, 236)"
 		if (ball.y < paddle2.y - paddle2.y / 6) {
 
 			ball.vy = -ball.force

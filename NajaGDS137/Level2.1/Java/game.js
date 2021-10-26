@@ -23,10 +23,10 @@ paddle2.y = canvas.width / 2
 
 //paddle size
 paddle.width = 15
-paddle.height = 105
+paddle.height = 75
 //player 2
 paddle2.width = 15
-paddle2.height = 105
+paddle2.height = 75
 
 
 // ball position
@@ -35,7 +35,7 @@ ball.x = 400
 ball.y = 300
 
 //ball size
-ball.width = 30
+ball.width = 20
 
 //ball speed
 ball.vx = -3
@@ -66,19 +66,19 @@ function animate() {
 
 	if (w) {
 		//moves up 
-		paddle.y += -8
+		paddle.y += -6
 	}
 	if (s) {
 		//moves down 
-		paddle.y += 8
+		paddle.y += 6
 
 	}
 	// second player key presses
 	if (ArrowUp) {
-		paddle2.y += -8
+		paddle2.y += -6
 	}
 	if (ArrowDown) {
-		paddle2.y += 8
+		paddle2.y += 6
 	}
 
 	ball.x += ball.vx
@@ -108,7 +108,7 @@ function animate() {
 	if (ball.y < 0 + ball.width / 2) {
 		ball.y = 0 + ball.width / 2
 		ball.vy = -ball.vy
-		ball.color = "cyan"
+		ball.color = "black"
 	}
 
 	// puts ball back in mid of canvas
@@ -117,16 +117,14 @@ function animate() {
 	// ball collisiion with paddle
 	if (ball.hitObject(paddle)) {
 
-		
-
 		ball.x = paddle.x + paddle.width / 2 + ball.width / 2
 		ball.vx = -ball.vx
-
-		if (ball.y < paddle.y - paddle.y / 7) {
+		ball.color = "cyan"
+		if (ball.y < paddle.y - paddle.y / 6) {
 
 			ball.vy = -ball.force
 		}
-		if (ball.y > paddle.y + paddle.height / 7) {
+		if (ball.y > paddle.y + paddle.height / 6) {
 			ball.vy = ball.force
 		}
 	}
@@ -134,16 +132,14 @@ function animate() {
 	if (ball.hitObject(paddle2)) {
 
 		
-
-
 		ball.x = paddle2.x - paddle2.width / 2 - ball.width / 2
 		ball.vx = -ball.vx
-
-		if (ball.y < paddle2.y - paddle2.y / 7) {
+		ball.color = "magenta"
+		if (ball.y < paddle2.y - paddle2.y / 6) {
 
 			ball.vy = -ball.force
 		}
-		if (ball.y > paddle2.y + paddle2.height / 7) {
+		if (ball.y > paddle2.y + paddle2.height / 6) {
 			ball.vy = ball.force
 		}
 	}
@@ -174,7 +170,7 @@ function reset(ball) {
 
 		ball.x = canvas.width / 2
 		ball.y = canvas.height / 2
-		ball.color = "red"
+		
 		score2++
 	}
 	//rightside 
@@ -182,7 +178,7 @@ function reset(ball) {
 
 		ball.x = canvas.width / 2
 		ball.y = canvas.height / 2
-		ball.color = "red"
+	
 		score1++
 	}
 }

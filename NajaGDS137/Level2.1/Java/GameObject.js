@@ -1,8 +1,6 @@
 //do not change this file!!!!
 
-function GameObject(x, y, w, h, color)
-
- {
+function GameObject(x, y, w, h, color) {
 
 	//Default Values
 	if (x == undefined)
@@ -37,6 +35,14 @@ function GameObject(x, y, w, h, color)
 	this.force = 1
 
 
+	//player score
+	this.drawScore = function () {
+
+		ctx.font = "18px Verdana"
+		ctx.fillStyle = "pink";
+		ctx.fillText("Player 1:  " + score1, 150, 20)
+		ctx.fillText("Player 2:  " + score2, 550, 20)
+	}
 
 	//This draws the player to the screen
 	this.drawRect = function () {
@@ -63,6 +69,7 @@ function GameObject(x, y, w, h, color)
 
 	}
 
+	
 	//This changes the player's position
 	this.move = function () {
 		this.x += this.vx

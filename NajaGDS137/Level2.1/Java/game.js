@@ -8,6 +8,8 @@ var timer
 var interval = 1000 / 60
 timer = setInterval(animate, interval)
 
+
+score = 0
 // this is the paddle
 var paddle = new GameObject()
 var paddle2 = new GameObject()
@@ -38,6 +40,18 @@ ball.width = 30
 //ball speed
 ball.vx = -3
 ball.vy = 1
+
+//middle divider
+var div = new GameObject()
+div.width = 2
+div.height = canvas.height
+div.x = canvas.width / 2
+
+// player score
+var score = new GameObject()
+var score1 = 0
+var score2 = 0
+
 
 
 //Animation Timer
@@ -70,24 +84,25 @@ function animate() {
 	ball.x += ball.vx
 	ball.y += ball.vy
 
-//paddle restriction
+	//paddle restriction
 
-pad(paddle)
-pad (paddle2)
+	pad(paddle)
+	pad(paddle2)
 
-
-	// ball boundry left side screen
+	 //ball boundry right side screen
 	//if (ball.x > canvas.width - ball.width / 2) {
-		//ball.x = canvas.width - ball.width / 2
-		//ball.vx = -ball.vx
-		//ball.color = "white"
+
+		
+		//reset()
 	//}
+
 
 	// ball boundry bottom screen
 	if (ball.y > canvas.height - ball.width / 2) {
 		ball.y = canvas.height - ball.width / 2
 		ball.vy = -ball.vy
 		ball.color = "black"
+
 	}
 	// ball boundry top screen
 	if (ball.y < 0 + ball.width / 2) {
@@ -97,21 +112,12 @@ pad (paddle2)
 	}
 
 	// puts ball back in mid of canvas
-	if (ball.x < 0 - ball.width / 2) {
-
-		ball.x = canvas.width / 2
-		ball.y = canvas.height / 2
-	}
-	if (ball.x > canvas.width + ball.width / 2) {
-
-		ball.x = canvas.width / 2
-		ball.y = canvas.height / 2
-	}
+	reset(ball)
 
 	// ball collisiion with paddle
 	if (ball.hitObject(paddle)) {
 
-		ball.color = "red"
+		
 
 		ball.x = paddle.x + paddle.width / 2 + ball.width / 2
 		ball.vx = -ball.vx
@@ -127,7 +133,8 @@ pad (paddle2)
 	// ball collision paddle 2
 	if (ball.hitObject(paddle2)) {
 
-		ball.color = "red"
+		
+
 
 		ball.x = paddle2.x - paddle2.width / 2 - ball.width / 2
 		ball.vx = -ball.vx
@@ -142,10 +149,16 @@ pad (paddle2)
 	}
 
 	//draws to screen
+	div.drawRect()
 	ball.drawCircle()
-	paddle.drawRect();
+	paddle.drawRect()
 	paddle2.drawRect()
+	score.drawScore()
+	
+
 }
+
+// paddle boundry
 function pad(pad) {
 	if (pad.y + pad.height > canvas.height + pad.height / 2) {
 		pad.y = canvas.height - pad.height / 2
@@ -155,5 +168,22 @@ function pad(pad) {
 	}
 }
 
+function reset(ball) {
+	//left side
+	if (ball.x < 0 - ball.width / 2) {
 
+		ball.x = canvas.width / 2
+		ball.y = canvas.height / 2
+		ball.color = "red"
+		score2++
+	}
+	//rightside 
+	if (ball.x > canvas.width + ball.width / 2) {
+
+		ball.x = canvas.width / 2
+		ball.y = canvas.height / 2
+		ball.color = "red"
+		score1++
+	}
+}
 

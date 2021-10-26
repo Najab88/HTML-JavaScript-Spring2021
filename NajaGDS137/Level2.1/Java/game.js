@@ -8,6 +8,9 @@ var timer
 var interval = 1000 / 60
 timer = setInterval(animate, interval)
 
+//images
+var img = document.getElementById("gum")
+var img2 = document.getElementById("gum2")
 
 score = 0
 // this is the paddle
@@ -69,6 +72,7 @@ function animate() {
     ctx.restore()
 	//keypresses
 
+	
 	if (w) {
 		//moves up 
 		paddle.y += -6
@@ -132,7 +136,7 @@ function animate() {
 		
 		ball.x = paddle2.x - paddle2.width / 2 - ball.width / 2
 		ball.vx = -ball.vx
-		ball.color = "rgb(134, 10, 236)"
+		
 		if (ball.y < paddle2.y - paddle2.y / 6) {
 
 			ball.vy = -ball.force
@@ -143,12 +147,13 @@ function animate() {
 	}
 
 	//draws to screen
-	ball.drawCircle()
+	//ball.drawCircle()
 	paddle.drawRect()
 	paddle2.drawRect()
 	score.drawScore()
+	ctx.drawImage(img, ball.x-22, ball.y-22, 50, 50)
 	
-
+	
 }
 
 // paddle boundry

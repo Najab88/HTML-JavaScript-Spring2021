@@ -22,6 +22,12 @@ haku.color = "rgb(230, 24, 144)"
 var shiki = new GameObject()
 shiki.color = "blue"
 
+var dirX = 0
+var dirY = 0
+
+var arena = new GameObject()
+arena.width = canvas.width
+arena.height = canvas.height
 
 //paddle position
 haku.x = 512
@@ -34,16 +40,17 @@ shiki.y = 300
 shiki.width = 70
 shiki.height = 70
 
-var bullet = new GameObject()
-bullet.x = 512
-bullet.y = 400
-bullet.width = 15
-bullet.height = 15
-bullet.vx = 0
-bullet.vy = 20
-bullet.color = "red"
 
+//bullets
+var bullets = new GameObject()
+bullets.x = -900
+bullets.y = haku.y
+bullets.width = 25
+bullets.height = 25
+bullets.color = "red"
 
+var shot = false
+var shooting = false
 
 
 
@@ -67,57 +74,121 @@ function animate() {
     if (w) {
         //moves up 
         haku.y += -6
+        
+
     }
     if (s) {
         //moves down 
         haku.y += 6
-
+        
+       
     }
     if (a) {
-        //moves up 
+        //moves left
         haku.x += -6
+        
     }
     if (d) {
         //moves down 
         haku.x += 6
+    
+    }
+    if (ArrowUp && !shot) {
+        //shoot up 
+        
+
+        shot = true
+        reset(bullets)
+        bullets.vy = dirY = -10
+        bullets.vx = dirX = 0
 
     }
-    if (space) {
-        bullet.y += -20
+    if (ArrowDown && !shot) {
+        //shoot down
+        
+
+        shot = true
+        reset(bullets)
+        bullets.vy = dirY = 10
+        bullets.vx = dirX = 0
+
     }
+    if (ArrowLeft && !shot) {
+        //shoot left
+        
+        shot = true
+        reset(bullets)
+        bullets.vy = dirY = 0
+        bullets.vx = dirX = -10
 
-    //bullets shooting
+    }
+    if (ArrowRight && !shot ) {
+        //shoot down 
+        
+        shot = true
+        reset(bullets)
+        bullets.vy = dirY = 0
+        bullets.vx = dirX = 10
+
+    }
+   
+
+    bullets.move()
 
 
+    /* //puts bullet back
+     if (bullets.y < 0 - bullets.height / 2) {
+ 
+         reset(bullets)
+         bullets.x = -500
+     	
+     }
+        //bottom
+     if (bullets.y > canvas.height + bullets.height / 2) {
+ 
+         reset(bullets)
+         bullets.y = -500
+         
+     }*/
 
-    //paddle restriction
+    if (!arena.hitObject(bullets)) {
+        reset(bullets)
+        bullets.x = -500
 
-    hak(haku)
-    //bull(bullet)
+    
+        hak(haku)
+    }
+   
+    bullets.drawRect()
     haku.drawRect()
-    bullet.drawRect()
     shiki.drawRect()
     //score.drawScore()
 
 
 
+
+
+    // haku boundry
+    function hak(hak) {
+        if (hak.y > canvas.height - hak.height / 2) {
+            hak.y = canvas.height - hak.height / 2
+        }
+        if (hak.y < 0 + hak.height / 2) {
+            hak.y = 0 + hak.height / 2
+        }
+        if (hak.x > canvas.width - hak.width/2) {
+            hak.x = canvas.width - hak.width/2
+        }
+        if (hak.x < 0 + hak.width /2) {
+            hak.x = 0 + hak.width /2
+        }
+    }
+
+    function reset(bullets) {
+        bullets.y = haku.y
+        bullets.x = haku.x
+
+        shot = false
+        bullets.vy = 0
+    }
 }
-
-// haku boundry
-function hak(hak) {
-    if (hak.y + hak.height > canvas.height + hak.height / 2) {
-        hak.y = canvas.height - hak.height / 2
-    }
-    if (hak.y < 0 + hak.height / 2) {
-        hak.y = 0 + hak.height / 2
-    }
-    if (hak.x + hak.height > canvas.height + hak.height) {
-        hak.x = canvas.height - hak.height
-    }
-    if (hak.x < 0 + hak.height) {
-        hak.x = 0 + hak.height
-    }
-}
-
-
-

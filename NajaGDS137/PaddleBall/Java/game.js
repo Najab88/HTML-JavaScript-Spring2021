@@ -22,16 +22,15 @@ paddle.height = 40
 var ball = new GameObject()
 ball.color = "magenta"
 
-//ball
+//ball sizes & speed
 ball.x = canvas.width / 2
 ball.y = canvas.height / 2
 ball.radius = 40
-
 ball.vx = 0
 ball.vy = 1
 ball.force = 5
 
-
+//force &Gravity
 var gravity = 1
 var frictionx = 0.97
 var frictiony = 0.97
@@ -60,18 +59,16 @@ function animate() {
 
     }
 
+    //paddle friction
     paddle.vx *= frictionx
     paddle.x += paddle.vx
 
     pad(paddle)
 
-
+    //ball friction
     ball.vx *= frictionx
     ball.vy *= frictiony
-
-
     ball.vy += gravity
-
     ball.x += ball.vx
     ball.y += ball.vy
 
@@ -105,7 +102,7 @@ function animate() {
 
     // ball collisiion with paddle
     if (ball.hitTestObject(paddle)) {
-        //center bounce
+
         ball.y = paddle.y - paddle.height / 2 - ball.height / 2
 
         ball.vy = -35
@@ -138,6 +135,8 @@ function animate() {
     ball.drawCircle()
     score.drawScore()
 
+
+    //ball rope
     ctx.save()
     ctx.strokeStyle = "black"
     ctx.beginPath()

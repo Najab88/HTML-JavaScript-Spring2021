@@ -39,6 +39,8 @@ shiki.x = 512
 shiki.y = 300
 shiki.width = 70
 shiki.height = 70
+shiki.vx = 3
+shiki.vy = 0
 
 
 //bullets
@@ -74,28 +76,28 @@ function animate() {
     if (w) {
         //moves up 
         haku.y += -6
-        
+
 
     }
     if (s) {
         //moves down 
         haku.y += 6
-        
-       
+
+
     }
     if (a) {
         //moves left
         haku.x += -6
-        
+
     }
     if (d) {
         //moves down 
         haku.x += 6
-    
+
     }
     if (ArrowUp && !shot) {
         //shoot up 
-        
+
 
         shot = true
         reset(bullets)
@@ -105,7 +107,7 @@ function animate() {
     }
     if (ArrowDown && !shot) {
         //shoot down
-        
+
 
         shot = true
         reset(bullets)
@@ -115,26 +117,25 @@ function animate() {
     }
     if (ArrowLeft && !shot) {
         //shoot left
-        
+
         shot = true
         reset(bullets)
         bullets.vy = dirY = 0
         bullets.vx = dirX = -10
 
     }
-    if (ArrowRight && !shot ) {
+    if (ArrowRight && !shot) {
         //shoot down 
-        
+
         shot = true
         reset(bullets)
         bullets.vy = dirY = 0
         bullets.vx = dirX = 10
 
     }
-   
+
 
     bullets.move()
-
 
     /* //puts bullet back
      if (bullets.y < 0 - bullets.height / 2) {
@@ -155,16 +156,16 @@ function animate() {
         reset(bullets)
         bullets.x = -500
 
-    
+
         hak(haku)
     }
-   
+
     bullets.drawRect()
     haku.drawRect()
     shiki.drawRect()
     //score.drawScore()
 
-
+}
 
 
 
@@ -176,13 +177,15 @@ function animate() {
         if (hak.y < 0 + hak.height / 2) {
             hak.y = 0 + hak.height / 2
         }
-        if (hak.x > canvas.width - hak.width/2) {
-            hak.x = canvas.width - hak.width/2
+        if (hak.x > canvas.width - hak.width / 2) {
+            hak.x = canvas.width - hak.width / 2
         }
-        if (hak.x < 0 + hak.width /2) {
-            hak.x = 0 + hak.width /2
+        if (hak.x < 0 + hak.width / 2) {
+            hak.x = 0 + hak.width / 2
         }
     }
+     
+    
 
     function reset(bullets) {
         bullets.y = haku.y
@@ -191,4 +194,4 @@ function animate() {
         shot = false
         bullets.vy = 0
     }
-}
+   

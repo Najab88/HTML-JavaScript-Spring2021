@@ -10,20 +10,27 @@ var player;
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");	
 
-	player = new GameObject({x:150,y:200});
+	player = new GameObject({x:150, y:canvas.height/2-100});
 
 	platform0 = new GameObject();
-		platform0.width = 150;
+		platform0.width = canvas.width-300;
 		platform0.x = platform0.width/2;
-		platform0.y = canvas.width/2 +player.height/2 + platform0.height/2;
-		platform0.color = "#66ff33";
+		platform0.color = "black";
 		
 	
 	platform1 = new GameObject();
-		platform1.width = 575;
-		platform1.x = platform0.x;
-		platform1.y = platform0.y - 200;
-		platform1.color = "blue";
+		platform1.x = platform1.width * 6.5;
+		platform1.y = platform0.y- platform0.height/2 - platform1.height/2;
+		platform1.color = "purple";
+		platform1.vx = 3;
+		
+	platform2 = new GameObject();
+		platform2.width = canvas.width-300;
+		platform2.x = platform0.width/2;
+		platform2.color = "cyan";
+		platform2.y = platform0.y- 200;
+		platform2.color = "orange";
+
 		
 	
 	goal = new GameObject({width:24, height:50, x:platform1.x, y:platform1.y+100, color:"#00ffff"});
@@ -61,6 +68,7 @@ function animate()
 	player.vy *= fY;
 	
 	player.vy += gravity;
+	player.vx += 2;
 	
 	player.x += Math.round(player.vx);
 	player.y += Math.round(player.vy);
@@ -87,37 +95,43 @@ function animate()
 		player.y++;
 		player.vy = 0;
 	}
-	
-	
-	
-	//---------Objective: Get the blue pearl----------------------------------------------------------------------------------------------------
-	//---------Add to the following condition so that when you hold "s" you climb down through the platform. 
-	
-	
-
-	while(platform1.hitTestPoint(player.bottom()) && player.vy>=0 && !s)
+	while(platform2.hitTestPoint(player.top()) && player.vy <=0)
 	{
-		player.canJump = true;
-		player.y--;
+		player.y++;
 		player.vy = 0;
 	}
-	
-	
-
-	if(player.hitTestObject(goal))
+	while(platform2.hitTestPoint(player.bottom()) && player.vy >=0)
 	{
-		goal.y = 100000;
+		player.y--;
+		player.vy = 0;
+		player.canJump = true;
 	}
+	while(platform2.hitTestPoint(player.left()) && player.vx <=0)
+	{
+		player.x++;
+		player.vx = 0;
+	}
+	while(platform2.hitTestPoint(player.right()) && player.vx >=0)
+	{
+		player.x--;
+		player.vx = 0;
+	}
+	
+	while(platform1.hitTestPoint(player.right()))
+	{
+		player.x-- ;
+		
+	}
+	
+	//---------Objective: Save Me!---------------------------------------------------------------------------------------------------- 
+	//---------Add a wall that will stop the player from falling--------------------------------------------------------------------------------
 
-	
-	
-	
+
 	
 	
 	platform0.drawRect();
-	platform1.drawRect();
-
-	
+	platform2.drawRect();
+platform1.drawRect()
 	player.drawRect();
 	
 	//Show hit points

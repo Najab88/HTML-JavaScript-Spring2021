@@ -60,7 +60,7 @@ function GameObject(x, y, w, h, color) {
 //player score
 this.drawScore = function () {
 
-	ctx.font = "16px Ariel"
+	ctx.font = "16px Arial"
 	ctx.fillStyle = "dark grey"
 	ctx.fillText("Score:  " + score1, 80, 25)
 	

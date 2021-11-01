@@ -107,21 +107,21 @@ function animate() {
 
         ball.vy = -35
 
-        if (ball.x < paddle.x - paddle.width / 3) {
+        if (ball.x < paddle.x - paddle.width / 6) {
 
             ball.vx = -ball.force
 
         }
-        if (ball.x > paddle.x + paddle.width / 3) {
+        if (ball.x > paddle.x + paddle.width / 6) {
 
             ball.vx = ball.force
         }
 
-        if (ball.x < paddle.x - paddle.width / 6) {
+        if (ball.x < paddle.x - paddle.width / 3) {
 
             ball.vx = -ball.force * 5
         }
-        if (ball.x > paddle.x + paddle.width / 6) {
+        if (ball.x > paddle.x + paddle.width / 3) {
 
             ball.vx = ball.force * 5
         }

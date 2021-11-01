@@ -10,26 +10,26 @@ var player;
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");	
 
-	player = new GameObject({x:150, y:canvas.height/2-100});
+	player = new GameObject({x:500, y:canvas.height/2-100});
 
 	platform0 = new GameObject();
 		platform0.width = canvas.width-300;
 		platform0.x = platform0.width/2;
-		platform0.color = "black";
+		platform0.color = "purple";
 		
 	
 	platform1 = new GameObject();
-		platform1.x = platform1.width * 6.5;
+		platform1.x = platform1.width;
 		platform1.y = platform0.y- platform0.height/2 - platform1.height/2;
-		platform1.color = "purple";
+		platform1.color = "yellow";
 		platform1.vx = 3;
 		
 	platform2 = new GameObject();
 		platform2.width = canvas.width-300;
 		platform2.x = platform0.width/2;
-		platform2.color = "cyan";
+		platform2.color = "blue";
 		platform2.y = platform0.y- 200;
-		platform2.color = "orange";
+		platform2.color = "blac";
 
 		
 	
@@ -68,11 +68,11 @@ function animate()
 	player.vy *= fY;
 	
 	player.vy += gravity;
-	player.vx += 2;
 	
 	player.x += Math.round(player.vx);
 	player.y += Math.round(player.vy);
 	
+	platform1.x += platform1.vx;
 
 	while(platform0.hitTestPoint(player.bottom()) && player.vy >=0)
 	{
@@ -117,25 +117,39 @@ function animate()
 		player.vx = 0;
 	}
 	
-	while(platform1.hitTestPoint(player.right()))
+	//---------Objective: Save Me!---------------------------------------------------------------------------------------------------- 
+	//---------Run this program first.
+	//---------Change the following condition so that the player pushes the wall-------------------------------------------------
+
+	while(platform1.hitTestPoint(player.left()))
 	{
-		player.x-- ;
+		platform1.x--
+		platform1.vx =0
+		player.x++;
 		
 	}
 	
-	//---------Objective: Save Me!---------------------------------------------------------------------------------------------------- 
-	//---------Add a wall that will stop the player from falling--------------------------------------------------------------------------------
+	
+
+	
+	
 
 
+
+	
+
+	
+	
+	
 	
 	
 	platform0.drawRect();
 	platform2.drawRect();
-    platform1.drawRect()
+	platform1.drawRect();
 	player.drawRect();
 	
 	//Show hit points
 	player.drawDebug();
-	goal.drawCircle();
+	
 }
 

@@ -41,7 +41,7 @@ function animate() {
 
 	context.clearRect(0, 0, canvas.width, canvas.height);
 
-	for (var i = 0; i < amount; i++) {
+	for (var i = 0; i < particles.length; i++) {
 
 		
 	//--------------------------------------Step 2: Draw Particles---------------------------------------------------------

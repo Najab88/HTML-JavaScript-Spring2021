@@ -135,7 +135,7 @@ function animate()
 	while(platform1.hitTestPoint(player.right()) && player.vx >=0)
 	{
 		
-		player.x = goal.x + 400
+		if (goal.y == 10000)
 		platform1.x = 30000;
 		player.vx = 0;
 	}

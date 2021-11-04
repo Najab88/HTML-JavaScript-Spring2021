@@ -1,5 +1,6 @@
 canvas = document.getElementById("canvas")
 ctx = canvas.getContext("2d")
+canvas.style.backgroundColor = "black";
 var canvas
 var ctx
 

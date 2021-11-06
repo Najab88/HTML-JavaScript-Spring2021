@@ -10,22 +10,30 @@ var interval = 1000 / 60
 timer = setInterval(animate, interval)
 
 //images
-var bgx =0
-var bgx2 =2048
+var bgx = 0
 var bg = new Image() //sky background
 bg.src = "images/sky.jpg"
 bg.onload = function () {
     animate()
 }
+var bgx2 = 1224
 var bg2 = new Image() //sky background
-bg.src = "images/sky.jpg"
-bg.onload = function () {
+bg2.src = "images/sky.jpg"
+bg2.onload = function () {
     animate()
 }
+var bgx3 = 2448
+var bg3 = new Image() //sky background
+bg3.src = "images/sky.jpg"
+bg3.onload = function () {
+    animate()
+}
+//bg speed
 bg.vx = -1
-bg.vy = 0
 bg2.vx = -1
-bg2.vy = 0
+bg3.vx = -1
+
+
 
 
 var ha = new Image() // player sprite
@@ -34,20 +42,52 @@ ha.onload = function () {
     animate()
 }
 
-var cloud = new Image() // floating clouds
-cloud.src = "images/cloud.png"
-cloud.onload = function () {
-    animate()
+
+var paper = new Image() // floating clouds
+paper.src = "images/paper.png"
+paper.onload = function () {
+   animate()
 }
 
+
+var amount = 12
+var particles = new Array()
+
+
+
+
+for (var i = 0; i < amount; i++) {
+    particles[i] = new GameObject()
+    particles[i].width = random(60, 120)
+    particles[i].height = random(60, 120)
+    particles[i].x = Math.random() * canvas.width // or (rand 0,canvas.width)
+    particles[i].y = Math.random() * canvas.height
+    particles[i].vy = random(1, 10)
+    particles[i].vx = random(1, 10)
+   
+    //particles[i].Image = cloud;
+
+}
+
+
 var bul = new Image() //bullets
-bul.src = "images/gum2.png"
+bul.src = "images/fire.png"
 bul.onload = function () {
     animate()
 }
 
 
 //score = 0
+
+//this is health bar
+var health = new GameObject()
+health.x = 255
+health.y = 56
+health.width = 412
+health.height = 30
+health.color = "cyan"
+var startHealth = 100 
+var healthbar = startHealth
 
 
 // this is the player
@@ -58,17 +98,6 @@ haku.y = canvas.height / 2
 haku.width = 60
 haku.height = 80
 var rotate = 0
-
-
-// this is the enemy
-var shiki = new GameObject()
-shiki.color = "blue"
-shiki.x = 512
-shiki.y = 300
-shiki.width = 70
-shiki.height = 70
-shiki.vx = 3
-shiki.vy = 0
 
 
 var dirX = 0
@@ -90,28 +119,17 @@ bullets.height = 25
 bullets.color = "rgb(230, 24, 144, 0)"
 
 
-//___________________________________this is the scrolling background__________________________________
-var amount = 8;
-var particles = [];
-var colors = ["white", "cyan", "grey"];
-
-// random particles
-for (var p = 0; p < amount; p++) {
-    particles[p] = new GameObject({ width: 10, height: 10 })
-    particles[p].x = Math.random() * canvas.height;
-    particles[p].y = Math.random() * canvas.width;
-    particles[p].vx = Math.random()*1+1
-    //particles[p].color = colors[Math.floor(random(0, 2.9))]
-    particles[p].Image = cloud;
-}
-//_______________________________________end scrolling bg________________________________________________
+var gravity = 0
 
 
 
-// player score
-//var score = new GameObject()
-//var score1 = 0
-//var score2 = 0
+// player score 
+var score = new GameObject()
+score.x = 500
+score.y = 500
+var score1 = startHealth
+var score2 = 0
+
 
 
 
@@ -125,14 +143,48 @@ function animate() {
 
     bgx += bg.vx
     bgx2 += bg2.vx
-    
-  
+
+   
+    ctx.drawImage(bg, bgx, 0, canvas.width + 5, canvas.height)
+    ctx.drawImage(bg2, bgx2, bg2.y, canvas.width + 5, canvas.height)
+    ctx.drawImage(bg3, bgx3, bg2.y, canvas.width + 5, canvas.height)
+    health.drawRect()
+
+    for (var i = 0; i < particles.length; i++) {
+
+        var dX = haku.x - particles[i].x
+        var dY = haku.y - particles[i].y
+        
+
+        if (particles[i].x < - particles[i].radius) {
+            particles[i].x = randomRange(canvas.width - particles[i].radius, particles[i].radius) + canvas.width
+            particles[i].y = randomRange(canvas.height - particles[i].radius, particles[i].radius)
+        }
+        // fall top canvas
+       // if (particles[i].y > canvas.height) {
+        //    particles[i].y = 0
+        //}
+
+        ctx.drawImage(paper, particles[i].x, particles[i].y, particles[i].width, particles[i].height)
+    }
+
+
+    //________________________________health Bar____________________________________________
+   
+   
+    if (healthbar > 0) {
+        ctx.fillStyle = "blue"
+        ctx.fillRect(48, 40, health.width, health.height)
+    }
+
+
 
     //__________________________________keypresses____________________________________________
     if (w) {
         //moves up 
         haku.y += -6
-        
+        //shiki.y = haku.y * 2
+
     }
     if (s) {
         //moves down 
@@ -145,6 +197,23 @@ function animate() {
     if (d) {
         //moves down 
         haku.x += 6
+    }
+
+    //___________________________Resets scrolling BG________________________________________
+    if (bgx < 0 - canvas.width) {
+
+        bgx = canvas.width
+
+    }
+    if (bgx2 < 0 - canvas.width) {
+
+        bgx2 = canvas.width
+
+    }
+    if (bgx3 < 0 - canvas.width) {
+
+        bgx3 = canvas.width
+
     }
 
     //_______________________________________bulletpresses_____________________________________________
@@ -188,48 +257,20 @@ function animate() {
     }
     //bullet collisions
 
-    if (bullets.hitObject(shiki)) {
+    //if (bullets.hitObject(shiki)) {
 
-        bullets.x = shiki.x
-        shiki.x = 3000
-    }
-    
+     //   bullets.x = shiki.x
+      //  shiki.x = 3000
+   // }
 
-    ctx.drawImage(bg, bgx, 0, canvas.width, canvas.height)
-    ctx.drawImage(bg2, bgx2, 0, canvas.width, canvas.height)
-   
-    //_______________________________________this is the scrolling background____________________________________
-    for (var p = 0; p < particles.length; p++) {
-
-        particles[p].x += particles[p].vx;
-
-//random speed
-        particles[p].vx = random(1, 2.9)
-
-        //puts back on screen
-        if (particles[p].x > canvas.width) {
-            particles[p].x = 0
-        }
-
-        ctx.drawImage(cloud, particles[p].x, particles[p].y, 90, 90)
-        
-        
-        
-    }
-//puts back on screen
-if (bg.x > canvas.width) {
-    bg.x = 0
-} 
-    
     //___________________________________________draw on screen__________________________________________
-    
+
     
     bullets.drawRect()
     haku.drawRect()
-    shiki.drawRect()
-    ctx.drawImage(bul, bullets.x-20, bullets.y -20, 50, 50)
-    ctx.drawImage(ha, haku.x -70,haku.y -78, 150, 150)
-    
+    ctx.drawImage(bul, bullets.x - 20, bullets.y - 20, 60, 60)
+    ctx.drawImage(ha, haku.x - 70, haku.y - 78, 150, 150)
+    score.drawScore()
     //score.drawScore()
 
 }
@@ -264,6 +305,8 @@ function reset(bullets) {
     shot = false
     bullets.vy = 0
 }
+
+
 
 
 

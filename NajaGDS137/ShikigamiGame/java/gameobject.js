@@ -27,23 +27,32 @@ function GameObject(obj)
 		ctx.save()
 		ctx.fillStyle = this.color
 		ctx.translate(this.x, this.y)
+		
 		ctx.fillRect((-this.width / 2), (-this.height / 2), this.width, this.height)
 		ctx.restore()
 
 	}
+	this.drawScore = function () {
 
+		ctx.font = "20px Verdana"
+		ctx.fillStyle = "black"
+		ctx.fillText("Health:  " +score1, 50, 30)
+		ctx.fillText("High Score:  " +score2, 1000, 30)
+		
+	}
 	this.drawCircle = function () {
-		context.save();
-		context.fillStyle = this.color;
-		context.beginPath();
-		context.translate(this.x, this.y);
-		context.arc(0, 0, this.radius(), 0, 360 * Math.PI / 180, true);
-		context.closePath();
-		context.fill();
-		context.restore();
+		ctx.save();
+		ctx.fillStyle = this.color;
+		ctx.beginPath();
+		ctx.translate(this.x, this.y);
+		ctx.arc(0, 0, this.radius(), 0, 360 * Math.PI / 180, true);
+		ctx.closePath();
+		ctx.fill();
+		ctx.restore();
 
 	}
 
+	
 	this.move = function () {
 		this.x += this.vx;
 		this.y += this.vy;

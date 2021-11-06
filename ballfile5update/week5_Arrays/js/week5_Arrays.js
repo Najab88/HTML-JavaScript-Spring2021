@@ -29,6 +29,8 @@ for (var i = 0; i < amt; i++)// stores objects
 	dots[i].vy = (10,10);
 	dots[i].vx = rand(10, 10);
 	dots[i].color = colors[Math.floor(rand(0, 2.9))];
+	//particles[p].Image = cloud;
+	//ctx.drawImage(cloud, particles[p].x, particles[p].y, 90, 90)
 }
 
 

@@ -50,20 +50,20 @@ paper.onload = function () {
 }
 
 
-var amount = 12
-var particles = new Array()
-
+var amount = 10
+var shiki = new Array()
+shiki.vx=-3
 
 
 
 for (var i = 0; i < amount; i++) {
-    particles[i] = new GameObject()
-    particles[i].width = random(60, 120)
-    particles[i].height = random(60, 120)
-    particles[i].x = Math.random() * canvas.width // or (rand 0,canvas.width)
-    particles[i].y = Math.random() * canvas.height
-    particles[i].vy = random(1, 10)
-    particles[i].vx = random(1, 10)
+     shiki[i] = new GameObject()
+     shiki[i].width = random(60, 120)
+     shiki[i].height = random(60, 120)
+     shiki[i].x = Math.random() * canvas.width // or (rand 0,canvas.width)
+     shiki[i].y = Math.random() * canvas.height
+     shiki[i].vy = random(1, 10)
+     shiki[i].vx = random(1, 10)
    
     //particles[i].Image = cloud;
 
@@ -145,27 +145,41 @@ function animate() {
     bgx2 += bg2.vx
 
    
+   
+
     ctx.drawImage(bg, bgx, 0, canvas.width + 5, canvas.height)
     ctx.drawImage(bg2, bgx2, bg2.y, canvas.width + 5, canvas.height)
     ctx.drawImage(bg3, bgx3, bg2.y, canvas.width + 5, canvas.height)
     health.drawRect()
 
-    for (var i = 0; i < particles.length; i++) {
+    for (var i = 0; i <  shiki.length; i++) {
 
-        var dX = haku.x - particles[i].x
-        var dY = haku.y - particles[i].y
+        shiki[i].x += -shiki[i].vx;
+		//shiki[i].y += shiki[i].vy;
+
+        //rando, enemy speed
+        shiki[i].vx = random(1,4.9)
+        
+        //resets enemies
+        if (shiki[i].x < 0 ) {
+			shiki[i].x = canvas.width
+           
+		}
+        // if enemies hits bullets
+        if (shiki[i].hitObject(bullets)) {
+			shiki[i].x = 3000
+            score2++
+
+		}//if enemes hit player
+        if (shiki[i].hitObject(haku)) {
+			shiki[i].x = 3000
+            score1 -=2
+
+		}
         
 
-        if (particles[i].x < - particles[i].radius) {
-            particles[i].x = randomRange(canvas.width - particles[i].radius, particles[i].radius) + canvas.width
-            particles[i].y = randomRange(canvas.height - particles[i].radius, particles[i].radius)
-        }
-        // fall top canvas
-       // if (particles[i].y > canvas.height) {
-        //    particles[i].y = 0
-        //}
 
-        ctx.drawImage(paper, particles[i].x, particles[i].y, particles[i].width, particles[i].height)
+        ctx.drawImage(paper,  shiki[i].x,  shiki[i].y,  shiki[i].width,  shiki[i].height)
     }
 
 
@@ -268,11 +282,10 @@ function animate() {
     
     bullets.drawRect()
     haku.drawRect()
-    ctx.drawImage(bul, bullets.x - 20, bullets.y - 20, 60, 60)
+    ctx.drawImage(bul, bullets.x - 20, bullets.y - 24, 60, 60)
     ctx.drawImage(ha, haku.x - 70, haku.y - 78, 150, 150)
     score.drawScore()
-    //score.drawScore()
-
+    
 }
 
 //__________________________________________functions______________________________________________________

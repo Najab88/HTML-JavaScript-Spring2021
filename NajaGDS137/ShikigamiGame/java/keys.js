@@ -6,8 +6,7 @@ var ArrowUp = false
 var ArrowRight = false
 var ArrowLeft = false
 var ArrowDown = false
-
-//var space = false
+var space = false
 
 document.addEventListener("keydown", press)
 document.addEventListener("keyup", release)
@@ -30,10 +29,10 @@ function press(e)
 	{
 		s = true
 	}
-	//if (e.keyCode ==32)
-	//{
-	//	space = true 
-	//}
+	if (e.keyCode ==32)
+	{
+		space = true 
+	}
 	if(e.keyCode == 38)
 	{
 		 ArrowUp= true
@@ -70,10 +69,10 @@ function release(e)
 	{
 		s = false
 	}
-	//if (e.keyCode ==32)
-	//{
-	//	space = false
-	//}
+	if (e.keyCode ==32)
+	{
+		space = false
+	}
 	if(e.keyCode == 38)
 	{
 		ArrowUp = false

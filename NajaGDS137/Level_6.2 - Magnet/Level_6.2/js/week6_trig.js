@@ -78,9 +78,13 @@ function magnet() {
 		pearl.x += dx / 25;
 		pearl.y += dy / 25;
 	} 
-	if (pearl.hitTestObject(player)) 
+	if (pearl.x >= player.x)
 	{
 		pearl.x = 10000
+	}
+	if (pearl.y >= player.y)
+	{
+		pearl.y = 10000
 	}
 }
 

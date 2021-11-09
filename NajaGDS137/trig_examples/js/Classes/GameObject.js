@@ -63,7 +63,7 @@ function GameObject(obj)
 			context.fillStyle = this.color;
 			context.translate(this.x, this.y);
 			//To convert deg to rad multiply deg * Math.PI/180
-			context.rotate(this.angle * Math.PI/180);
+			context.rotate(this.angle * Math.PI/180);// move to ohter functions to rotate
 			context.beginPath();
 				context.moveTo(0+ this.width/2, 0);
 				context.lineTo(0 - this.width/2, 0 - this.height/4);

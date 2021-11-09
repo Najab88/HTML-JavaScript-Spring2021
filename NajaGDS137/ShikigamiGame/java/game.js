@@ -19,6 +19,7 @@ bg.onload = function () {
     animate()
 }
 var bgx2 = 1224
+
 var bg2 = new Image() //sky background
 bg2.src = "images/sky.jpg"
 bg2.onload = function () {
@@ -48,7 +49,7 @@ var haku = new GameObject()
 haku.color = "rgb(230, 24, 144, 0)"
 haku.x = 512
 haku.y = canvas.height / 2
-haku.width = 60
+haku.width = 550
 haku.height = 80
 
 // moves with mouse
@@ -88,6 +89,7 @@ paper.onload = function () {
 var amount = 10
 var shiki = new Array()
 shiki.vx = -3
+var shikiamnt =0
 
 
 for (var i = 0; i < amount; i++) {
@@ -95,7 +97,7 @@ for (var i = 0; i < amount; i++) {
     shiki[i].width = random(60, 120)
     shiki[i].height = random(60, 120)
     shiki[i].x = Math.random() * canvas.width // or (rand 0,canvas.width)
-    shiki[i].y = Math.random() * canvas.height 
+    shiki[i].y = Math.random() * canvas.height
     shiki[i].vy = random(1, 10)
     shiki[i].vx = random(1, 10)
 
@@ -113,10 +115,10 @@ var startHealth = 100
 var healthbar = startHealth
 
 var topbar = new GameObject()
-topbar.y=35
+topbar.y = 35
 topbar.width = 1224
-topbar.height=73
-topbar.color="pink"
+topbar.height = 73
+topbar.color = "pink"
 
 //_______________________________________________this is the arena_________________________________
 var arena = new GameObject()
@@ -147,6 +149,7 @@ function animate() {
 
     bgx += bg.vx
     bgx2 += bg2.vx
+    bgx3 += bg3.vx
 
 
 
@@ -158,7 +161,7 @@ function animate() {
 
 
     //______________________________enemy__________________________________________________________
-    for (var i = 0; i < shiki.length; i++) {
+    for (var i = 0; i < shikiamnt; i++) {
 
         shiki[i].x += -shiki[i].vx;
         //shiki[i].y += shiki[i].vy;
@@ -178,7 +181,7 @@ function animate() {
             shiki[i].x = 3000
             score1 -= 50
 
-        }
+        }if (shiki[i])
 
 
 
@@ -269,7 +272,11 @@ function animate() {
     bullets.drawRect()
     haku.drawRect()
     ctx.drawImage(bul, bullets.x - 20, bullets.y - 24, 60, 60)
-    ctx.drawImage(ha, haku.x - 70, haku.y - 78, 150, 150)
+    ctx.save()
+    ctx.translate(haku.x, haku.y)
+    ctx.scale(-1, 1)
+    ctx.drawImage(ha, - 70, - 78, 150, 150)
+    ctx.restore()
     score.drawScore()
 
 }
@@ -284,17 +291,17 @@ function hak(hak) {
     if (hak.y > canvas.height - hak.height / 2) {
         hak.y = canvas.height - hak.height / 2
     }
-    if (hak.y <  topbar.height+39 ) {
-        hak.y =  topbar.height+39
+    if (hak.y < topbar.height + 39) {
+        hak.y = topbar.height + 39
     }
-    if (hak.x >  topbar.width - hak.width / 2) {
-        hak.x =  topbar.width - hak.width / 2
+    if (hak.x > topbar.width - hak.width / 2) {
+        hak.x = topbar.width - hak.width / 2
     }
     if (hak.x < 0 + hak.width / 2) {
         hak.x = 0 + hak.width / 2
     }
-    
-    
+
+
 }
 
 

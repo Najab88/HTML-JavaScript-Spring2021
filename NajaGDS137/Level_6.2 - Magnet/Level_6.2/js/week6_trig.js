@@ -9,122 +9,125 @@ var timer;
 var interval;
 var player;
 
-	canvas = document.getElementById("canvas");
-	context = canvas.getContext("2d");	
+canvas = document.getElementById("canvas");
+context = canvas.getContext("2d");
 
-	player = new GameObject();
-	player.force = 1;
-	
-	pearl = new GameObject({x:200, y:200, width:25, color:"cyan"});
-	
-	
-	//friction
-	var fX = .80;
-	var fY = .80;
-	
-	var angle = 0;
-	
-	//gravity gets added to the vy
-	var gravity = 0;
+player = new GameObject();
+player.force = 1;
 
-	interval = 1000/60;
-	timer = setInterval(animate, interval);
-	
+pearl = new GameObject({ x: 200, y: 200, width: 25, color: "cyan" });
 
-function animate()
-{
-	
-	context.clearRect(0,0,canvas.width, canvas.height);	
-	
+
+//friction
+var fX = .80;
+var fY = .80;
+
+var angle = 0;
+
+var dist = Math.sqrt(dx * dx + dy * dy)
+var dx = player.x - pearl.x
+var dy = player.y - pearl.y
+
+
+//gravity gets added to the vy
+var gravity = 0;
+
+interval = 1000 / 60;
+timer = setInterval(animate, interval);
+
+
+function animate() {
+
+	context.clearRect(0, 0, canvas.width, canvas.height);
+
 	/*-----------This function move the player-----------*/
 	//w and s move forward and backward
 	//a and d rotate the triangle
 	angularMovement();
-	
+
 	//-------------------------------------------------------------------------------------------------------------------------
 	//------------------------------------------------------INSTRUCTIONS-------------------------------------------------------
 	//-------------------------------------------------------------------------------------------------------------------------
-	
+
 	//--------Make the blue pearl move to the player when it's within 300 pixels of the player.------
-magnet()
+	magnet()
 
 	//--------If the pearl hits the player's x and y coordinates move it off screen.-----------------
-	if (pearl.hitTestObject(player))
+
+	player.drawTriangle();
+	pearl.drawCircle();
+
+}
+
+//--------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------END OF INSTRUCTIONS-------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------
+
+
+
+function magnet() {
+
+	var dx = player.x - pearl.x
+	var dy = player.y - pearl.y
+
+
+	var dist = Math.sqrt(dx * dx + dy * dy);
+
+	if (dist < 300) {
+
+		pearl.x += dx / 25;
+		pearl.y += dy / 25;
+	} 
+	if (pearl.hitTestObject(player)) 
 	{
 		pearl.x = 10000
 	}
-	
-	//--------------------------------------------------------------------------------------------------------------------------
-	//------------------------------------------------------END OF INSTRUCTIONS-------------------------------------------------
-	//--------------------------------------------------------------------------------------------------------------------------
-	
-	player.drawTriangle();
-	pearl.drawCircle();
 }
 
-function magnet()
-{
-	
-	{
-		
-		var dx = player.x - pearl.x+300;
-		var dy = player.y - pearl.y+300
+	function angularMovement() {
+		if (w) {
+			//Convert Angle to Radians
+			var radians = player.angle * Math.PI / 180;
 
-		var dist = Math.sqrt(dx * dx + dy * dy);
-		
-		pearl.x += dx /100;
-		pearl.y += dy /100;
-	}
-}
-function angularMovement()
-{
-	if(w)
-	{	
-		//Convert Angle to Radians
-		var radians = player.angle * Math.PI/180;
-		
-		//Calculate acceleration modifiers (lengtha and height of triangle)
-		player.ax = Math.cos(radians);
-		player.ay = Math.sin(radians);
-		
-		player.vx += player.ax * player.force;
-		player.vy += player.ay * player.force;
+			//Calculate acceleration modifiers (lengtha and height of triangle)
+			player.ax = Math.cos(radians);
+			player.ay = Math.sin(radians);
 
-		
-	}
-	
-	if(s)
-	{
-		//Convert Angle to Radians
-		var radians = player.angle * Math.PI/180;
-		
-		//Calculate acceleration modifiers (lengtha and height of triangle)
-		player.ax = Math.cos(radians);
-		player.ay = Math.sin(radians);
-		
-		player.vx += player.ax * -player.force;
-		player.vy += player.ay * -player.force;
-	}
-	
-	//Rotate Counter Clockwise
-	if(a)
-	{
-		player.angle-=2;
-	}
-	//Rotate Clockwise
-	if(d)
-	{
-		player.angle+=2;
-	}
+			player.vx += player.ax * player.force;
+			player.vy += player.ay * player.force;
 
-	//apply physics to velocity
-	player.vx *= fX;
-	player.vy *= fY;
-	
-	//apply gravity to velocity
-	player.vy += gravity;
-	
-	//move player
-	player.move();
-}
+
+		}
+
+		if (s) {
+			//Convert Angle to Radians
+			var radians = player.angle * Math.PI / 180;
+
+			//Calculate acceleration modifiers (lengtha and height of triangle)
+			player.ax = Math.cos(radians);
+			player.ay = Math.sin(radians);
+
+			player.vx += player.ax * -player.force;
+			player.vy += player.ay * -player.force;
+		}
+
+		//Rotate Counter Clockwise
+		if (a) {
+			player.angle -= 2;
+		}
+		//Rotate Clockwise
+		if (d) {
+			player.angle += 2;
+		}
+
+		//apply physics to velocity
+		player.vx *= fX;
+		player.vy *= fY;
+
+		//apply gravity to velocity
+		player.vy += gravity;
+
+		//move player
+		player.move();
+	}
 

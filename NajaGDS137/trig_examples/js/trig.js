@@ -42,7 +42,7 @@ function animate()
 	/*-----------These move the follower-----------------*/
 	//magnet(); //- eases the follower towards the player - 
 	//point(); //- points at the player
-	follow(); //- follows the player
+	//follow(); //- follows the player
 	//orbit(); //- orbits the player using physics
 	//revolve(); //- orbits the player without physics.
 	//sinWave(); //- moves the follower in a sin wave pattern from left to right
@@ -76,7 +76,7 @@ function angularMovement()
 		player.ax = Math.cos(radians);
 		player.ay = Math.sin(radians);
 		
-		player.vx += player.ax * -player.force;
+		player.vx += player.ax * -player.force; // times how fast you want to go - force to make it move in other direction
 		player.vy += player.ay * -player.force;
 	}
 	
@@ -104,10 +104,10 @@ function angularMovement()
 
 function revolve()
 {
-	angle-=5;
+	angle-=5; // change lower to lower speed 
 	var radians = angle * Math.PI/180;
 	
-	follower.x = player.x + Math.cos(radians) * 200;
+	follower.x = player.x //starting point+ Math.cos(radians) * 200;// how far away
 	follower.y = player.y + Math.sin(radians) * 200;
 }
 	
@@ -122,13 +122,16 @@ function magnet()
 	//This can be used to get the actual distance between two points.
 	var dist = Math.sqrt(dx * dx + dy * dy);
 	
+	if (dist <300){// need for assignment
+	
 	follower.x += dx /25;
 	follower.y += dy /25;
+	}
 }
 
-function point()
+function point() // will need this code to make enemies point to player
 {
-	var dx = player.x - follower.x;
+	var dx = player.x - follower.x; // dist between player and enemy 
 	var dy = player.y - follower.y;
 	
 	var dist = Math.sqrt(dx * dx + dy * dy);
@@ -146,10 +149,19 @@ function follow()
 	var dist = Math.sqrt(dx * dx + dy * dy);
 	
 	var radians = Math.atan2(dy, dx);
-	
+	follower.angle = radians *180/Math.PI // makes enemy point at player wjile moving
 	follower.vx = Math.cos(radians)*follower.force;
 	follower.vy = Math.sin(radians)*follower.force;
 
+
+	/*if (dist < 200){
+		follow.color = "yellow"
+		follower.x += -follower.vx *2
+		follower.y += -follower.vy *2
+	}else
+	{
+		follower.color="red"
+	}*/
 	follower.x += follower.vx * 2;
 	follower.y += follower.vy * 2;
 }
@@ -164,19 +176,25 @@ function orbit()
 	var radians = Math.atan2(dy, dx);
 	
 	angle = radians * 180/Math.PI;
+	//follower.angle = player.angle
 	
-	follower.vx += Math.cos(radians)*follower.force;
+	follower.vx += Math.cos(radians)*follower.force // + speeds him how 
 	follower.vy += Math.sin(radians)*follower.force;
 	
+
+	/*follower.vx *=fX
+	follower.vy *=fY8 slows down enemy*/ 
 	follower.x += follower.vx * 2;
 	follower.y += follower.vy * 2;
 
 }
 
+//var size = 2
 function sinWave()
 {
-	angle-=5;
+	angle+= 5;
 	var radians = angle * Math.PI/180;
-	follower.y = player.y + Math.sin(radians) * 200;
-	follower.x += 2;
+	follower.y = player.y +// comment out to go back and forth Math.sin(radians) * 200;
+	follower.x = 2;// player.x+matc.cos(radians *200 )
+	//size +=2
 }

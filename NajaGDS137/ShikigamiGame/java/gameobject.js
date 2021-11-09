@@ -83,7 +83,12 @@ function GameObject(obj) {
 		ctx.drawImage(ha, haku.x - 70, haku.y - 78, 150,150);  // draw image
 		
 	}
-
+	this.drawImage = function () {
+		ctx.translate(haku.x, haku.y);    // translate to center of rotation
+		ctx.translate(-haku.x, -haku.y);  // translate back
+		ctx.drawImage(ha, haku.x - 70, haku.y - 78, 150,150);  // draw image
+		
+	}
 	//draws a triangle
 	this.drawTriangle = function () {
 		context.save();

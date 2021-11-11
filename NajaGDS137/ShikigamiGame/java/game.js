@@ -12,14 +12,13 @@ var interval = 1000 / 60
 timer = setInterval(animate, interval)
 
 //____________________________ This is the background images__________________________________________
-var bgx = 0
+/*var bgx = 0
 var bg = new Image() //sky background
 bg.src = "images/sky.jpg"
 bg.onload = function () {
     animate()
 }
 var bgx2 = 1224
-
 var bg2 = new Image() //sky background
 bg2.src = "images/sky.jpg"
 bg2.onload = function () {
@@ -35,11 +34,11 @@ bg3.onload = function () {
 bg.vx = -1
 bg2.vx = -1
 bg3.vx = -1
-
+*/
 
 //____________________________________________player_________________________________________________
 
-var ha = new Image() // player sprite image
+/*var ha = new Image() // player sprite image
 ha.src = "images/haku.png"
 ha.onload = function () {
     animate()
@@ -50,7 +49,7 @@ haku.color = "rgb(230, 24, 144, 0)"
 haku.x = 512
 haku.y = canvas.height / 2
 haku.width = 550
-haku.height = 80
+haku.height = 80*/
 
 // moves with mouse
 canvas.addEventListener("mousemove", function (evt) {
@@ -62,7 +61,7 @@ canvas.addEventListener("mousemove", function (evt) {
 
 //_____________________________________Bullets__________________________________________________
 
-var bul = new Image() //bullets image
+/*var bul = new Image() //bullets image
 bul.src = "images/fire.png"
 bul.onload = function () {
     animate()
@@ -76,7 +75,7 @@ bullets.x = -900
 bullets.y = haku.y
 bullets.width = 25
 bullets.height = 25
-bullets.color = "rgb(230, 24, 144, 0)"
+bullets.color = "rgb(230, 24, 144, 0)"*/
 
 //____________________________________________This is the enemy array______________________________________________
 
@@ -86,7 +85,7 @@ paper.onload = function () {
     animate()
 }
 
-var amount = 10
+/*var amount = 10
 var shiki = new Array()
 shiki.vx = -3
 var shikiamnt =0
@@ -101,7 +100,7 @@ for (var i = 0; i < amount; i++) {
     shiki[i].vy = random(1, 10)
     shiki[i].vx = random(1, 10)
 
-}
+}*/
 
 
 //____________________________________this is health bar________________________________
@@ -207,7 +206,7 @@ function animate() {
     }
 
     //_______________________________________bulletpresses_____________________________________________
-    if (w && !shot) {
+   /* if (w && !shot) {
         //moves up 
         // haku.y += -6
         //shiki.y = haku.y * 2

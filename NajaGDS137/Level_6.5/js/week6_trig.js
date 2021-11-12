@@ -127,8 +127,8 @@ states["play"] = function () {
 
 	player.vx = Math.cos(radians) * player.force;
 	player.vy = Math.sin(radians) * player.force;
-	player.x += player.vx * .78;
-	player.y += player.vy * .78;
+	player.x += player.vx * .75;
+	player.y += player.vy * .75;
 
 	//--------------------------------------------------------------------------------------------------------------------------
 	//------------------------------------------------------END OF INSTRUCTIONS-------------------------------------------------

@@ -96,6 +96,19 @@ for (var i = 0; i < amount; i++) {
         enemy[i].x = canvas.width
 
     }
+
+     // if enemies hits bullets
+     if (enemy[i].hitObject(bullets)) {
+        enemy[i].x = 3000
+        score2++
+
+    }//if enemes hit player
+    if (shiki[i].hitObject(haku)) {
+        shiki[i].x = 3000
+        score1 -= 50
+
+    }
+
     enemy[i].drawTri();
    
 }

@@ -12,7 +12,7 @@ var interval = 1000 / 60
 timer = setInterval(animate, interval)
 
 //____________________________ This is the background images__________________________________________
-/*var bgx = 0
+var bgx = 0
 var bg = new Image() //sky background
 bg.src = "images/sky.jpg"
 bg.onload = function () {
@@ -34,11 +34,11 @@ bg3.onload = function () {
 bg.vx = -1
 bg2.vx = -1
 bg3.vx = -1
-*/
+
 
 //____________________________________________player_________________________________________________
 
-/*var ha = new Image() // player sprite image
+var ha = new Image() // player sprite image
 ha.src = "images/haku.png"
 ha.onload = function () {
     animate()
@@ -49,7 +49,7 @@ haku.color = "rgb(230, 24, 144, 0)"
 haku.x = 512
 haku.y = canvas.height / 2
 haku.width = 550
-haku.height = 80*/
+haku.height = 80
 
 // moves with mouse
 canvas.addEventListener("mousemove", function (evt) {
@@ -61,7 +61,7 @@ canvas.addEventListener("mousemove", function (evt) {
 
 //_____________________________________Bullets__________________________________________________
 
-/*var bul = new Image() //bullets image
+var bul = new Image() //bullets image
 bul.src = "images/fire.png"
 bul.onload = function () {
     animate()
@@ -75,7 +75,7 @@ bullets.x = -900
 bullets.y = haku.y
 bullets.width = 25
 bullets.height = 25
-bullets.color = "rgb(230, 24, 144, 0)"*/
+bullets.color = "rgb(230, 24, 144, 0)"
 
 //____________________________________________This is the enemy array______________________________________________
 
@@ -85,7 +85,7 @@ paper.onload = function () {
     animate()
 }
 
-/*var amount = 10
+var amount = 10
 var shiki = new Array()
 shiki.vx = -3
 var shikiamnt =0
@@ -100,7 +100,7 @@ for (var i = 0; i < amount; i++) {
     shiki[i].vy = random(1, 10)
     shiki[i].vx = random(1, 10)
 
-}*/
+}
 
 
 //____________________________________this is health bar________________________________
@@ -184,12 +184,29 @@ function animate() {
 
 
 
+//resets enemies
+   /* if (enemy[i].x < 0) {
+        enemy[i].x = canvas.width
+    
+    }
+    // if enemies hits bullets
+    /*if (enemy[i].hitTestObject(bullet)) {
+        console.log("hit bullet")
+        enemy[i].x = 3000
+        score2++
+
+    if (enemy[i].hitTestObject(haku)) {
+
+        enemy[i].x = 3000
+        score1 -= 50
+        haku.color = "yellow"
+    }*/
 
         ctx.drawImage(paper, shiki[i].x, shiki[i].y, shiki[i].width, shiki[i].height)
     }
 
     //___________________________Resets scrolling BG________________________________________
-    if (bgx < 0 - canvas.width) {
+     if (bgx < 0 - canvas.width) {
 
         bgx = canvas.width
 
@@ -206,7 +223,7 @@ function animate() {
     }
 
     //_______________________________________bulletpresses_____________________________________________
-   /* if (w && !shot) {
+   if (w && !shot) {
         //moves up 
         // haku.y += -6
         //shiki.y = haku.y * 2
@@ -241,12 +258,12 @@ function animate() {
         bullets.vy = dirY = 0
         bullets.vx = dirX = 10
     }
-    /*if (space  && !shot) {
+    if (space  && !shot) {
          shot = true
          reset(bullets)
          bullets.vy = dirY = 0
          bullets.vx = dirX = 10
-     }*/
+     }
 
     bullets.move()
 
@@ -271,6 +288,7 @@ function animate() {
     bullets.drawRect()
     haku.drawRect()
     ctx.drawImage(bul, bullets.x - 20, bullets.y - 24, 60, 60)
+   // flips image backwards
     ctx.save()
     ctx.translate(haku.x, haku.y)
     ctx.scale(-1, 1)
@@ -312,10 +330,6 @@ function reset(bullets) {
     shot = false
     bullets.vy = 0
 }
-function restartGame() {
-    location.reload();
-}
-
 
 
 

@@ -24,11 +24,29 @@ bg.vx = -1
 bg2.vx = -1
 bg3.vx = -1
 
+
+
+//________________________________________PowerUP__________________________________________________
+var oni = new Image() //powerup image
+oni.src = "images/oni.png"
+
+
+var powerup = new GameObject()
+{
+    powerup.color = "rgb(230, 24, 144,0)"
+    //powerup.x =  Math.random() * canvas.height
+    //powerup.y =  Math.random() * canvas.height
+    powerup.width = 45
+    powerup.height = 45
+    powerup.y = -900
+    powerup.vy = 3
+}
 //____________________________________________player_________________________________________________
-//var playerImage= document.getElementById("haku")
+var himg = new Image() //player image
+himg.src = "images/haku.png"
 
 var haku = new GameObject()
-haku.color = "rgb(230, 24, 144)"
+haku.color = "rgb(230, 24, 144,0)"
 haku.x = 512
 haku.y = canvas.height / 2
 haku.width = 55
@@ -36,39 +54,77 @@ haku.height = 55
 
 
 //_______________________________________________bullets______________________
+var bul = new Image() //bullets image
+bul.src = "images/fire.png"
+
+
 var shot = false
 var shooting = false
-var bullet = new GameObject()
-bullet.x = -900
-bullet.y = haku.y
-bullet.width = 25
-bullet.height = 25
-bullet.color = "red"
+var bullets = new GameObject()
+bullets.x = -900
+bullets.y = haku.y
+bullets.width = 25
+bullets.height = 25
+bullets.color = "rgb(230, 24, 144,0)"
 
 //_____________________________________________Enemy__________________________________________
 
+var paper = new Image() //enemy image
+paper.src = "images/paper.png"
 
-var amount = 10
-var enemy = []
-var enemyAdd= +1
-//enemy.vx = 3
+var amount = 6
+var shiki = new Array()
+
 
 
 for (var i = 0; i < amount; i++) {
-    enemy[i] = new GameObject()
-    enemy[i].color = "orange"
-    enemy[i].width = -random(60, 60,) 
-    enemy[i].height = -random(60, 60) 
-    // random screen spawn
-    enemy[i].x = Math.random() * canvas.width // or (rand 0,canvas.width)
-    enemy[i].y = Math.random() * canvas.height-100
-   
-   //random speeds
-    enemy[i].vy = random(1, 8) 
-    enemy[i].vx = random(1, 8)
-
-  
+    shiki[i] = new GameObject()
+    shiki[i].width = 50
+    shiki[i].height = 50
+    shiki[i].x = Math.random() * canvas.width-10 // or (rand 0,canvas.width)
+    shiki[i].y = Math.random() * canvas.height +160
+    shiki[i].vy = random(1, 7)
+    shiki[i].vx = random(1, 7)
+    shiki[i].color = "rgb(230, 24, 144,0)"
 }
+
+//____________________________________this is health bar________________________________
+var health = new GameObject()
+health.x = 180
+health.y = 22
+health.width = 312
+health.height = 30
+health.color = "cyan"
+var startHealth = 100
+var healthbar = startHealth
+
+var health2 = new GameObject()
+health2.x = 180
+health2.y = 22
+health2.width = 312
+health2.height = 30
+health2.color = "red"
+
+var topbar = new GameObject()
+topbar.y = 35
+topbar.width = 1224
+topbar.height = 73
+topbar.color = "pink"
+
+//______________________________________Arena______________________________________________________________________
+var arena = new GameObject()
+arena.width = canvas.width
+arena.height = canvas.height
+
+
+var gravity = 0
+
+//_______________________________________________this is the player score____________________________________
+var score = new GameObject()
+score.x = 500
+score.y = 500
+var score1 = startHealth
+var score2 = 0
 
 
 function animate() {
@@ -79,40 +135,60 @@ function animate() {
     bgx2 += bg2.vx
     bgx3 += bg3.vx
 
+
     // draw bg on screen
+
     ctx.drawImage(bg, bgx, 0, canvas.width + 5, canvas.height)
     ctx.drawImage(bg2, bgx2, bg2.y, canvas.width + 5, canvas.height)
     ctx.drawImage(bg3, bgx3, bg2.y, canvas.width + 5, canvas.height)
-
-
-//______________________________enemy__________________________________________________________
-for (var i = 0; i < amount; i++) {
-
-   enemy[i].x += -enemy[i].vx
+    // topbar.drawRect()
+    health2.drawBar()
+    health.drawBar()
    
+    //_________________________________________________________________powerup____________________________________
+    powerup.y += powerup.vy
 
-    //resets enemies
-    if (enemy[i].x < 0) {
-        enemy[i].x = canvas.width
-
+    //resets powerup
+    if (powerup.y > 900 + powerup.height) {
+        powerup.y = -9000 + Math.random() / canvas.width
+        powerup.x = Math.random() * canvas.height + 130
+    }
+    if (haku.hitObject(powerup)) {
+        score1 += 10
+        powerup.y = -9000 + Math.random() / canvas.width
+        powerup.x = Math.random() * canvas.height + 130
     }
 
-     // if enemies hits bullets
-     if (enemy[i].hitObject(bullets)) {
-        enemy[i].x = 3000
-        score2++
+    //______________________________enemy__________________________________________________________
+    for (var i = 0; i < amount; i++) {
 
-    }//if enemes hit player
-    if (shiki[i].hitObject(haku)) {
-        shiki[i].x = 3000
-        score1 -= 50
+        shiki[i].x += -shiki[i].vx
+        //shiki[i].y += shiki[i].vy;
 
+        //resets enemies
+        if (shiki[i].x < 0 - shiki[i].width) {
+            // shiki[i].x = canvas.width
+            shiki[i].x = canvas.width * 1
+            shiki[i].y = Math.random() * canvas.height +120
+        }
+        // if enemies hits bullets
+        if (shiki[i].hitObject(bullets)) {
+            shiki[i].x = 3000
+            score2++
+        }
+        //if enemes hit player
+        if (shiki[i].hitObject(haku)) {
+            shiki[i].x = 3000
+
+            //health bar movement
+            health.width = score1 / startHealth * 312
+            score1 -= 2
+
+        }
+        
+        shiki[i].drawTri()
+        ctx.drawImage(paper, shiki[i].x-50, shiki[i].y-43, 100, 100)
     }
-
-    enemy[i].drawTri();
-   
-}
-
 
 
     //___________________________Resets scrolling BG________________________________________
@@ -137,6 +213,7 @@ for (var i = 0; i < amount; i++) {
     if (w) {
         //moves up 
         haku.y += -6
+         
     }
     if (s) {
 
@@ -145,85 +222,99 @@ for (var i = 0; i < amount; i++) {
     if (a) {
         //moves left
         haku.x += -6
+        
+        
     }
-    if (d) {
+    if (d ) {
         //moves down 
         haku.x += 6
     }
-    // ctx.drawImage(playerImage, haku.x-70, haku.y-78, 50, 50)
+    
+    
 
 
     //_____________________________________bullet shoot keys_________________________________________
     if (ArrowUp && !shot) {
         //shoot up 
         shot = true
-        reset(bullet)
-        bullet.vy = dirY = -10
-        bullet.vx = dirX = 0
+        reset(bullets)
+        bullets.vy = dirY = -10
+        bullets.vx = dirX = 0
 
     }
     if (ArrowDown && !shot) {
         //shootdown 
         shot = true
-        reset(bullet)
-        bullet.vy = dirY = 10
-        bullet.vx = dirX = 0
+        reset(bullets)
+        bullets.vy = dirY = 10
+        bullets.vx = dirX = 0
     }
     if (ArrowLeft && !shot) {
         //shoot left
 
         shot = true
-        reset(bullet)
-        bullet.vy = dirY = 0
-        bullet.vx = dirX = -10
+        reset(bullets)
+        bullets.vy = dirY = 0
+        bullets.vx = dirX = -10
+        changeImage(haku)
     }
     if (ArrowRight && !shot) {
         //Shoot Right 
 
         shot = true
-        reset(bullet)
-        bullet.vy = dirY = 0
-        bullet.vx = dirX = 10
-    }
-
-    // player boundry bottom
-    if (haku.y > canvas.height - haku.width / 2) {
-        haku.y = canvas.height - haku.width / 2
-
-        haku.color = "black"
+        reset(bullets)
+        bullets.vy = dirY = 0
+        bullets.vx = dirX = 10
 
     }
-    //  top screen
-    if (haku.y < 0 + haku.width / 2) {
-        haku.y = 0 + haku.width / 2
+    bullets.move()
 
-        haku.color = "red"
-    }// right screen
-    if (haku.x > canvas.width - haku.height / 2) {
-        haku.x = canvas.width - haku.height / 2
+    if (!arena.hitObject(bullets)) {
+        reset(bullets)
+        bullets.x = -500
 
-        haku.color = "blue"
 
     }
-    //  left
-    if (haku.x < 0 + haku.height / 2) {
-        haku.x = 0 + haku.height / 2
-
-        haku.color = "purple"
-    }
-
-   
-    bullet.move()
-    bullet.drawRect()
-    haku.drawRect()
+    hak(haku)
     
+    powerup.drawRect()
+    ctx.drawImage(oni, powerup.x - 32, powerup.y - 40, 70, 80)
+    bullets.drawRect()
+    ctx.drawImage(bul, bullets.x - 25, bullets.y - 35, 70, 70)
+    haku.drawRect()
+    ctx.drawImage(himg, haku.x-52, haku.y-78, 135, 135)
+    
+    score.drawScore()
+    //bullet.drawDebug();
 }
+
 
 
 function random(low, high) {
     return Math.random() * (high - low) + low;
 }
 
+// player boundry 
+function hak(hak) {
+
+    if (hak.y > canvas.height - hak.height / 2) {
+        hak.y = canvas.height - hak.height / 2
+        //hak.color = "black" //bottom
+    }
+    if (hak.y < topbar.height + 20) {
+        hak.y = topbar.height + 20
+        //hak.color = "red" // top
+    }
+    if (hak.x > topbar.width - hak.width / 2) {
+        hak.x = topbar.width - hak.width / 2
+        //hak.color = "blue" // right
+    }
+    if (hak.x < 0 + hak.width / 2) {
+        hak.x = 0 + hak.width / 2
+        //hak.color = "purple"// left
+    }
+
+}
 function reset(bullets) {
     bullets.y = haku.y
     bullets.x = haku.x

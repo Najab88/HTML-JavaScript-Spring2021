@@ -42,7 +42,7 @@ function animate()
 	/*-----------These move the follower-----------------*/
 	//magnet(); //- eases the follower towards the player - 
 	//point(); //- points at the player
-	//follow(); //- follows the player
+	follow(); //- follows the player
 	//orbit(); //- orbits the player using physics
 	//revolve(); //- orbits the player without physics.
 	//sinWave(); //- moves the follower in a sin wave pattern from left to right
@@ -190,11 +190,38 @@ function orbit()
 }
 
 //var size = 2
-function sinWave()
+/*function sinWave()
 {
 	angle+= 5;
 	var radians = angle * Math.PI/180;
 	follower.y = player.y +// comment out to go back and forth Math.sin(radians) * 200;
 	follower.x = 2;// player.x+matc.cos(radians *200 )
 	//size +=2
-}
+}*/
+
+
+// new screen boundry
+ /* if (haku.y > canvas.height - haku.width / 2) {
+        haku.y = canvas.height - haku.width / 2
+
+        haku.color = "black"
+
+    }
+    //  top screen
+    if (haku.y < 0 + haku.width / 2) {
+        haku.y = 0 + haku.width / 2
+
+        haku.color = "red"
+    }// right screen
+    if (haku.x > canvas.width - haku.height / 2) {
+        haku.x = canvas.width - haku.height / 2
+
+        haku.color = "blue"
+
+    }
+    //  left
+    if (haku.x < 0 + haku.height / 2) {
+        haku.x = 0 + haku.height / 2
+
+        haku.color = "purple"
+    }*/

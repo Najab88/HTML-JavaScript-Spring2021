@@ -85,16 +85,7 @@ function GameObject(obj) {
 		ctx.restore();
 
 	}
-	/*this.drawImageFlip = function () {
-		ctx.translate(this.x,this.y);    
-		ctx.translate(-this.x, -this.y)
-		//ctx.drawImage(ha, haku.x - 70, haku.y - 78, 150,150);  // draw image
-	}
-	this.drawImage = function () {
-		ctx.translate(this.x,this.y)  
-		ctx.translate(-this.x, -this.y) 
-		//ctx.drawImage(ha, haku.x - 70, haku.y - 78, 150,150);  // draw image
-	}*/
+	
 
 	this.move = function () {
 		this.x += this.vx;
@@ -103,36 +94,44 @@ function GameObject(obj) {
 
 
 	//---------Returns object's for the top, bottom, left and right of an object's bounding box.
-	this.left = function () {
-		return { x: this.x - this.width / 2, y: this.y }
+	this.left = function() 
+	{
+		return {x:this.x - this.width/2 , y:this.y}
 	}
-	this.right = function () {
-		return { x: this.x + this.width / 2, y: this.y }
+	this.right = function() 
+	{
+		return {x:this.x + this.width/2 , y:this.y}
 	}
-
-	this.top = function () {
-		return { x: this.x, y: this.y - this.height / 2 }
+	
+	this.top = function() 
+	{
+		return {x:this.x, y:this.y - this.height/2}
 	}
-	this.bottom = function () {
-		return { x: this.x, y: this.y + this.height / 2 }
+	this.bottom = function() 
+	{
+		return {x:this.x , y:this.y + this.height/2}
 	}
-
-	this.hitTestObject = function (obj) {
-		if (this.left().x <= obj.right().x &&
-			this.right().x >= obj.left().x &&
-			this.top().y <= obj.bottom().y &&
-			this.bottom().y >= obj.top().y) {
+	
+	this.hitObject = function(obj)
+	{
+		if(this.left().x <= obj.right().x && 
+		   this.right().x >= obj.left().x &&
+		   this.top().y <= obj.bottom().y &&
+		   this.bottom().y >= obj.top().y)
+		{
 			return true
 		}
 		return false;
 	}
-
+		
 	//------Tests whether a single point overlaps the bounding box of another object-------
-	this.hitTestPoint = function (obj) {
-		if (obj.x >= this.left().x &&
-			obj.x <= this.right().x &&
-			obj.y >= this.top().y &&
-			obj.y <= this.bottom().y) {
+	this.hitTestPoint = function(obj)
+	{
+		if(obj.x >= this.left().x && 
+		   obj.x <= this.right().x &&
+		   obj.y >= this.top().y &&  
+		   obj.y <= this.bottom().y)
+		{
 			return true;
 		}
 		return false;
@@ -151,13 +150,13 @@ function GameObject(obj) {
 	//Draws the collision points
 	this.drawDebug = function () {
 		var size = 5;
-		context.save();
-		context.fillStyle = "black";
-		context.fillRect(this.left().x - size / 2, this.left().y - size / 2, size, size);
-		context.fillRect(this.right().x - size / 2, this.right().y - size / 2, size, size);
-		context.fillRect(this.top().x - size / 2, this.top().y - size / 2, size, size);
-		context.fillRect(this.bottom().x - size / 2, this.bottom().y - size / 2, size, size);
-		context.fillRect(this.x - size / 2, this.y - size / 2, size, size);
-		context.restore();
+		ctx.save();
+		ctx.fillStyle = "black";
+		ctx.fillRect(this.left().x - size / 2, this.left().y - size / 2, size, size);
+		ctx.fillRect(this.right().x - size / 2, this.right().y - size / 2, size, size);
+		ctx.fillRect(this.top().x - size / 2, this.top().y - size / 2, size, size);
+		ctx.fillRect(this.bottom().x - size / 2, this.bottom().y - size / 2, size, size);
+		ctx.fillRect(this.x - size / 2, this.y - size / 2, size, size);
+		ctx.restore();
 	}
 }

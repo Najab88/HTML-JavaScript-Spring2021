@@ -45,6 +45,9 @@ var powerup = new GameObject()
 var himg = new Image() //player image
 himg.src = "images/haku.png"
 
+var himg2 = new Image() //player image
+himg2.src = "images/haku.png"
+
 var haku = new GameObject()
 haku.color = "rgb(230, 24, 144,0)"
 haku.x = 512
@@ -169,7 +172,7 @@ function animate() {
         if (shiki[i].x < 0 - shiki[i].width) {
             // shiki[i].x = canvas.width
             shiki[i].x = canvas.width * 1
-            shiki[i].y = Math.random() * canvas.height +120
+            shiki[i].y = Math.random() * canvas.height -25
         }
         // if enemies hits bullets
         if (shiki[i].hitObject(bullets)) {
@@ -182,7 +185,7 @@ function animate() {
 
             //health bar movement
             health.width = score1 / startHealth * 312
-            score1 -= 2
+            score1 -= 5
 
         }
         
@@ -256,7 +259,7 @@ function animate() {
         reset(bullets)
         bullets.vy = dirY = 0
         bullets.vx = dirX = -10
-        changeImage(haku)
+       
     }
     if (ArrowRight && !shot) {
         //Shoot Right 
@@ -265,7 +268,7 @@ function animate() {
         reset(bullets)
         bullets.vy = dirY = 0
         bullets.vx = dirX = 10
-
+        
     }
     bullets.move()
 

@@ -44,6 +44,7 @@ function GameObject(obj) {
 		ctx.fillStyle = this.color
 		ctx.translate(this.x, this.y)
 		ctx.lineWidth = 5;
+		//ctx.rotate(this.angle * Math.PI / 180);
 		ctx.strokeRect((-this.width / 2), (-this.height / 2), this.width, this.height)
 		ctx.fillRect((-this.width / 2), (-this.height / 2), this.width, this.height)
 		ctx.restore()

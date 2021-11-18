@@ -1,0 +1,15 @@
+canvas{
+	border:1px solid black;
+	background-color: rgb(100, 194, 237);
+}
+
+html,body
+{
+    display: flex;
+    justify-content: center;
+
+    
+    background-position: center;
+    background-size: cover;
+}
+

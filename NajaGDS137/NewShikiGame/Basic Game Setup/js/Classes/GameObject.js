@@ -35,6 +35,7 @@ function GameObject(obj) {
 		ctx.save()
 		ctx.fillStyle = this.color
 		ctx.translate(this.x, this.y)
+		ctx.rotate(this.angle * Math.PI/180);
 		ctx.fillRect((-this.width / 2), (-this.height / 2), this.width, this.height)
 		ctx.restore()
 

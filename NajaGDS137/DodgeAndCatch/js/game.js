@@ -17,7 +17,7 @@ var player = new GameObject()
 player.width = 50
 player.height = 50
 player.x = canvas.width / 2
-player.y = canvas.height -player.height / 2 -25
+player.y = canvas.height - player.height / 2 - 25
 player.color = "#ffff00"
 
 player.vx = 0
@@ -61,7 +61,7 @@ for (var i = 0; i < squareamount; i++) {
     square[i].y = Math.random() * canvas.height;
     square[i].vy = rand(1, 5)
 
-   
+
 }
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -76,38 +76,37 @@ function animate() {
         circle[c].y += circle[c].vy
 
 
-// resets circle
-        if (circle[c].y > canvas.height) {
-            circle[c].y = 0 + Math.random() / canvas.width+10
-            circle[c].x = Math.random() * canvas.height +10
+        // resets circle
+       if (circle[c].y > canvas.height) {
+            circle[c].y = 0 + Math.random() / canvas.width + 10
+            circle[c].x = Math.random() * canvas.height + 10
         } 
         // circle collides
-         if (circle[c].hitTestObject (player))
-        {
+        if (circle[c].hitTestObject(player)) {
             player.color = "red"
             score1 = 0
-           
+
             for (var i = 0; i < amount; i++) {
-                
+
                 circle[i].x = Math.random() * canvas.width;
                 circle[i].y = Math.random() * -canvas.height;
                 circle[i].vy = rand(1, 7)
-            
+
             }
-            
+
             for (var i = 0; i < squareamount; i++) {
-                
+
                 square[i].x = Math.random() * -canvas.width;
                 square[i].y = Math.random() * canvas.height;
                 square[i].vy = rand(1, 5)
-            
-               
+
+
             }
-            
+
             clearTimeout(time)
             time = setTimeout(reset, 500)
-             
-            
+
+
         }
 
 
@@ -118,29 +117,28 @@ function animate() {
     for (var s = 0; s < square.length; s++) {
 
         square[s].y += square[s].vy
-        
-//resets square
+
+        //resets square
         if (square[s].y > canvas.height) {
-            square[s].y = 0 + Math.random() / canvas.width+10
-            square[s].x = Math.random() * canvas.height +10
+            square[s].y = 0 + Math.random() / canvas.width + 10
+            square[s].x = Math.random() * canvas.height + 10
         }
         // square collides
-        if (square[s].hitTestObject (player))
-        {
-            score1 +=1 
-            player.color="green"
-            
+        if (square[s].hitTestObject(player)) {
+            score1 += 1
+            player.color = "green"
+
             square[s].x = Math.random() * -canvas.width;
-                square[s].y = Math.random() * canvas.height;
-                square[s].vy = rand(1, 5)
+            square[s].y = Math.random() * canvas.height;
+            square[s].vy = rand(1, 5)
 
             clearTimeout(time)
             time = setTimeout(reset, 500)
-             
-           
 
-               // how to use timer to change colors
-               //how to set reset
+
+
+            // how to use timer to change colors
+            //how to set reset
         }
 
 
@@ -193,7 +191,7 @@ function playerbound(play) {
 }
 
 function reset() {
-    
+
     player.color = "#ffff00"
 }
 

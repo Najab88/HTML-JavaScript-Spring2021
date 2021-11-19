@@ -215,7 +215,7 @@ function animate() {
         //if enemes hit player
         if (shiki[i].hitObject(haku)) {
             shiki[i].x = 3000
-
+score1 -=2
             //health bar movement
             health.width = score1 / startHealth * 312
         }

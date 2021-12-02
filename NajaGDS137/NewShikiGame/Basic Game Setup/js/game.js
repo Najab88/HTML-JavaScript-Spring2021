@@ -414,7 +414,7 @@ function animate() {
      ctx.save();
      ctx.fillStyle = "black"
      ctx.font = "50px arial"
-     ctx.fillText("GAME OVER... ", 350, 425)
+     ctx.fillText("You got caught! Refresh the page to try again!... ", 350, 425)
      ctx.restore();
    }
    score.drawScore()

@@ -410,11 +410,12 @@ function animate() {
    ctx.clearRect(0,0,canvas.width, canvas.height);
             
     hkglow = false 
+    score1 = 0
 
      ctx.save();
      ctx.fillStyle = "black"
-     ctx.font = "50px arial"
-     ctx.fillText("You got caught! Refresh the page to try again!... ", 350, 425)
+     ctx.font = "40px arial"
+     ctx.fillText("You got caught! Refresh to try again!... ", 250, 425)
      ctx.restore();
    }
    score.drawScore()

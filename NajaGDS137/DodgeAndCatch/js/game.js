@@ -158,7 +158,7 @@ function animate() {
     if (d) {
         //moves right
         player.x += 6
-        s
+        
     }
 
 

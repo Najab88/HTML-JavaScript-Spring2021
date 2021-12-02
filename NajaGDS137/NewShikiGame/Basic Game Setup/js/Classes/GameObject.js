@@ -11,6 +11,7 @@ function GameObject(obj) {
 	this.vx = 0;
 	this.vy = 0;
 
+	
 	//the angle that the graphic is drawn facing.
 	this.angle = 0;
 	//force
@@ -18,12 +19,16 @@ function GameObject(obj) {
 
 	//------Allows us to pass object literals into the class to define its properties--------//
 	//------This eliminate the need to pass in the property arguments in a specific order------------//
-	if (obj !== undefined) {
-		for (value in obj) {
-			if (this[value] !== undefined)
-				this[value] = obj[value];
+	if(obj!== undefined)
+		{
+			for(value in obj)
+			{
+				if(this[value]!== undefined)
+				{
+					this[value] = obj[value];
+				}
+			}
 		}
-	}
 
 
 	//whether or not the object can jump
@@ -40,14 +45,15 @@ function GameObject(obj) {
 		ctx.restore()
 
 	}
+	
 	this.drawBar = function () {
 		ctx.save()
 		ctx.fillStyle = this.color
 		ctx.translate(this.x, this.y)
 		ctx.lineWidth = 5;
 		//ctx.rotate(this.angle * Math.PI / 180);
-		ctx.strokeRect((-this.width / 2), (-this.height / 2), this.width, this.height)
-		ctx.fillRect((-this.width / 2), (-this.height / 2), this.width, this.height)
+		ctx.strokeRect(0, 0, this.width, this.height)
+		ctx.fillRect(0, 0, this.width, this.height)
 		ctx.restore()
 
 	}
@@ -70,6 +76,12 @@ function GameObject(obj) {
 		ctx.fill();
 		ctx.restore();
 
+	}
+	this.drawYub = function () {
+		ctx.save()
+		ctx.translate(this.x, this.y)
+		ctx.drawImage(yub,this.x,this.y,312,200)
+		ctx.restore()
 	}
 	//draws a triangle
 	this.drawTri = function () {

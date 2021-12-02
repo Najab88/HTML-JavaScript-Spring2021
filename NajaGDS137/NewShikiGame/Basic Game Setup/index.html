@@ -1,18 +1,45 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta name="author" content="Naja Brown">
-<title>New Shikigami Avoider</title>
-<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<meta charset="utf-8">
+	<meta name="author" content="Naja Brown">
+	<title>New Shikigami Avoider</title>
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
-	<canvas id="canvas" width="1224" height= "900" >
-    	Your browser is outdated and does not support HTML5. Please update to the latest version.
-    </canvas>
-	
+
+	<canvas id="canvas" width="1224" height="900">
+		Your browser is outdated and does not support HTML5. Please update to the latest version.
+	</canvas>
+
+
+	<audio id="sound">
+		<source src="sounds/fire.mp3" type="audio/ogg">
+		Your browser does not support the audio element.
+	</audio>
+
+	<audio id="healthup">
+		<source src="sounds/healthup.wav" type="audio/ogg">
+		Your browser does not support the audio element.
+	</audio>
+
+	<audio id="shikmusic">
+		<source src="sounds/dboy.mp3" type="audio/ogg">
+		Your browser does not support the audio element.
+
+
+	</audio>
+
+	<div id="audio ">
+
+
+		<input type="button" value="Play Music" onclick="play()">
+		<audio id="audio" src="sounds/dboy.mp3"></audio>
+	</div>
 </body>
+
 <!--Controls-->
 <script type="text/javascript" src="js/Utility/controls.js"></script>
 

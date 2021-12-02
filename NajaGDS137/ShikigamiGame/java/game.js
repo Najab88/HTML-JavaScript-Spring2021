@@ -88,7 +88,7 @@ paper.onload = function () {
 var amount = 10
 var shiki = new Array()
 shiki.vx = -3
-var shikiamnt =0
+
 
 
 for (var i = 0; i < amount; i++) {

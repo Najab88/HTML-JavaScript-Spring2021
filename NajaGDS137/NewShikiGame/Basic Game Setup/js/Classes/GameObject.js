@@ -77,7 +77,7 @@ function GameObject(obj) {
 		ctx.font = "bold 14px Verdana"
 		ctx.fillStyle = "black"
 		ctx.fillText("Shoot:" +  " Arrow Keys",500, 20)
-		ctx.fillText("Move:" +  " A, W, S, D ",500, 45)
+		ctx.fillText("Move:" +  " A, W, S, D ",500, 40)
 
 	}
 

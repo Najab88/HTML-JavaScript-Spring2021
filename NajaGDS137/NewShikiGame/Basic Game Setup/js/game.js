@@ -176,7 +176,7 @@ var gravity = 0
 //_______________________________________________this is the player score____________________________________
 var score = new GameObject()
 var score22 = new GameObject()
-var how= new GameObject()
+var howplay= new GameObject()
 score.x = 500
 score.y = 500
 var score1 = startHealth
@@ -455,7 +455,7 @@ function animate() {
     pointYub()
     score.drawScore()
     score22.drawScore2()
-    how.drawScore3()
+    howplay.drawScore3()
     powerup.drawRect()
     ctx.drawImage(oni, powerup.x - 32, powerup.y - 40, 70, 80)
  

@@ -241,7 +241,7 @@ function animate() {
 
     //resets powerup
     if (powerup.y > 900 + powerup.height) {
-        powerup.y = -4000 + Math.random() / canvas.width
+        powerup.y = -3000 + Math.random() / canvas.width
         powerup.x = Math.random() * canvas.height + 130
     }
     if (haku.hitObject(powerup)) {
@@ -292,7 +292,7 @@ function animate() {
         for (i in shiki) {
             if (shiki[i].hitObject(bullets[b])) {
                 shiki[i].x = 3000
-                score2++
+                score2 += 10
                 bullets[b].x = -500;
                 bullets[b].y = -500
 
@@ -300,7 +300,7 @@ function animate() {
         }
 
         if (boss.hitObject(bullets[b])) {
-            score2 += 35
+            score2 += 100
             score3 -= 80
             bosshealth -= 80
             bullets[b].x = -500;
@@ -327,7 +327,7 @@ function animate() {
             
             shiki[i].x = canvas.width * 1
             shiki[i].y = Math.random() * canvas.height - 25
-            shiki[i].amount +6
+          
         }
         // if enemies hits bullets
 

@@ -1,4 +1,3 @@
-	//----------------------------------------------------------Instructions------------------------------------------------
 	//---------------------In this assignment you will see a "State Machine" in action--------------------------------------
 	//---------------------A "Finite State Machine" is a design pattern that allows us--------------------------------------
 	//---------------------to switch between different functionality easily-------------------------------------------------

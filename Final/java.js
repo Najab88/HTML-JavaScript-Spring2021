@@ -72,6 +72,10 @@ hkglw.onload = function () {
     main()
 }
 
+
+
+
+
 function gameStart() {
 
     //creat an instance of the player ship 

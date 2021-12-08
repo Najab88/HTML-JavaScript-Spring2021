@@ -63,6 +63,13 @@ function GameObject(obj) {
 		ctx.fillStyle = "black"
 		ctx.fillText("Health:  " + score1, 50, 30)
 		ctx.fillText("High Score:  " + score2, 1000, 30)
+		
+	}
+	this.drawScore2 = function () {
+
+		ctx.font = "bold 14px Verdana"
+		ctx.fillStyle = "black"
+		ctx.fillText("Health:" + score3, boss.x-65, boss.y +112)
 
 	}
 
@@ -80,7 +87,8 @@ function GameObject(obj) {
 	this.drawYub = function () {
 		ctx.save()
 		ctx.translate(this.x, this.y)
-		ctx.drawImage(yub,this.x,this.y,312,200)
+		ctx.rotate(this.angle * Math.PI / 180);
+		ctx.drawImage(yub,boss.x,boss.y,312,200)
 		ctx.restore()
 	}
 	//draws a triangle

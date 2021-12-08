@@ -7,12 +7,7 @@ var timer = setInterval(animate, interval);
 var sound = document.querySelector("#sound");
 var healthup = document.querySelector("#healthup");
 
-function play() {
-    var audio = document.getElementById("audio")
-    var audio = new Audio("sounds/dboy.mp3");
-    audio.play()
 
-}
 //____________________________ This is the background images__________________________________________
 var bgx = 0
 var bg = new Image() //sky background1
@@ -27,15 +22,25 @@ var bg3 = new Image() //sky background3
 bg3.src = "images/sky.jpg"
 
 
+/*var soundbox = new GameObject() //play sound
+soundbox.color = "rgb(230, 24, 144)"
+soundbox.x = 1000
+soundbox.y = canvas.height / 2
+soundbox.width = 2
+soundbox.height = canvas.height*/
+
+
 var win1 = new Image() //win background
 win1.src = "images/win.png"
+
+var lose = new Image() //win background
+lose.src = "images/lose.png"
 
 //bg speed
 bg.vx = -1
 bg2.vx = -1
 bg3.vx = -1
-
-
+//soundbox.vx = -2
 
 //________________________________________PowerUP__________________________________________________
 var oni = new Image() //powerup image
@@ -49,7 +54,7 @@ var powerup = new GameObject()
     //powerup.y =  Math.random() * canvas.height
     powerup.width = 45
     powerup.height = 45
-    powerup.y = -900
+    powerup.y = 4000
     powerup.vy = 3
 }
 //____________________________________________player_________________________________________________
@@ -57,10 +62,14 @@ var himg = new Image() //player image
 himg.src = "images/haku.png"
 
 var hkglow = false
+var hkglow2 = false
 
 
-var himg2 = new Image() //player imagea
+var himg2 = new Image() //player green
 himg2.src = "images/hkglw.png"
+
+var himg3 = new Image() //player red
+himg3.src = "images/hakured.png"
 
 var haku = new GameObject()
 haku.color = "rgb(230, 24, 144,0)"
@@ -74,15 +83,21 @@ haku.vx = 0
 var yub = new Image() //boss image
 yub.src = "images/yub.png"
 
+var bird = new Image() //boss image
+bird.src = "images/bird.png"
+
+
 var boss = new GameObject()
-boss.color = "rgb(230, 24, 144)"
-boss.x = 1024//2400
+boss.color = "rgb(230, 24, 144,0)"
+boss.x = 10024//2400
 boss.y = 200
-boss.width = 180
-boss.height = 200
+boss.width = 140
+boss.height = 140
 boss.vx = 1
 boss.vy = 1
-var bosshealth = 1000
+var bosshealth = 5000
+
+
 
 //_______________________________________________bullets______________________
 var bul = new Image() //bullets image
@@ -99,7 +114,7 @@ var bullets = new Array()
 var paper = new Image() //enemy image
 paper.src = "images/paper.png"
 
-var amount = 6
+var amount = 24
 var shiki = new Array()
 
 
@@ -110,9 +125,16 @@ for (var i = 0; i < amount; i++) {
 
     shiki[i].x = Math.random() * canvas.width + 600
     shiki[i].y = Math.random() * -canvas.height
+  
 
     shiki[i].vx = random(1, 7)
+    shiki[i].width = random(20, 37)
+    shiki[i].height = random(20, 37)
     shiki[i].color = "rgb(230, 24, 144,0)"
+    if (shiki[i] < canvas.width)
+    {
+        shiki[i].amount +=100
+    }
 
 }
 
@@ -139,6 +161,10 @@ topbar.width = 1224
 topbar.height = 73
 topbar.color = "pink"
 
+
+
+
+
 //______________________________________Arena______________________________________________________________________
 var arena = new GameObject()
 arena.width = canvas.width
@@ -149,11 +175,18 @@ var gravity = 0
 
 //_______________________________________________this is the player score____________________________________
 var score = new GameObject()
+var score22 = new GameObject()
 score.x = 500
 score.y = 500
 var score1 = startHealth
 var score2 = 0
+var score3 = bosshealth
+
+
 var bulletCount = 0
+
+    
+
 
 //________________________________________________This is the token explode_________________________________________
 var token = new Image() //player image
@@ -164,18 +197,17 @@ var tamount = 200
 var tokens = []
 
 var colors = []
-colors[0] = "cyan"
-colors[1] = "blue"
-colors[2] = "white"
+colors[0] = "rgb(81, 173, 254)"
+colors[1] = "rgb(46, 222, 254)"
+colors[2] = "rgb(52, 109, 103)"
+colors[3] = "rgb(244, 242, 243)"
 
 // set size of tokens
 
 for (var i = 0; i < tamount; i++) {
     tokens[i] = new GameObject({ x: canvas.width/2, y:canvas.height/2, width: 30, height: 30 })
-    tokens[i].color = colors[Math.floor(random(0, 2.9))]
-    //tokens[i].x = boss.x;
-    //tokens[i].y = boss.y;
-
+    tokens[i].color = colors[Math.floor(random(0, 3.9))]
+   
     tokens[i].vx = random(-25, 10)
     tokens[i].vy = random(-25, 10)
 }
@@ -190,22 +222,25 @@ function animate() {
     bgx += bg.vx
     bgx2 += bg2.vx
     bgx3 += bg3.vx
+   // soundbox.x += soundbox.vx
+    
     haku.x += haku.vx
     // draw bg on screen
 
     ctx.drawImage(bg, bgx, 0, canvas.width + 5, canvas.height)
     ctx.drawImage(bg2, bgx2, bg2.y, canvas.width + 5, canvas.height)
     ctx.drawImage(bg3, bgx3, bg2.y, canvas.width + 5, canvas.height)
+    //soundbox.drawRect()
     // topbar.drawRect()
     health2.drawBar()
     health.drawBar()
-
+   
     //_________________________________________________________________powerup____________________________________
     powerup.y += powerup.vy
 
     //resets powerup
     if (powerup.y > 900 + powerup.height) {
-        powerup.y = -1000 + Math.random() / canvas.width
+        powerup.y = -4000 + Math.random() / canvas.width
         powerup.x = Math.random() * canvas.height + 130
     }
     if (haku.hitObject(powerup)) {
@@ -223,6 +258,10 @@ function animate() {
             health.width = 300
 
         }
+        if (health.width < 0) {
+            health.width = 0
+
+        }
 
         if (hkglow == false) {
             glow()
@@ -232,12 +271,20 @@ function animate() {
 
     if (boss.hitObject(haku)) {
         score1 -= 5
+        health.width = health.width - 5
+
+        
+      
+        if (hkglow2 == false) {
+            glow2()
+        }
     }
 
     //______________________________Bullets__________________________________________________________
     for (b in bullets) {
         bullets[b].x += bullets[b].vx
         bullets[b].y += bullets[b].vy
+        bullets[b].color = "rgb(230, 24, 144, 0)"
         bullets[b].drawRect()
         ctx.drawImage(bul, bullets[b].x - 25, bullets[b].y - 35, 70, 70)
 
@@ -247,17 +294,26 @@ function animate() {
                 score2++
                 bullets[b].x = -500;
                 bullets[b].y = -500
+
             }
         }
 
         if (boss.hitObject(bullets[b])) {
-            score2 += 15
-            bosshealth -= 100
+            score2 += 35
+            score3 -= 80
+            bosshealth -= 80
             bullets[b].x = -500;
-
             bullets[b].y = -500
         }
+        if (bullets[b].x > canvas.width)
+        {
+            bullets[b].x = -500000000000000000000000
+        }if (bullets[b].y > canvas.height)
+        {
+            bullets[b].y = -500000000000000000000000
+        }
     }
+    
     //______________________________enemy__________________________________________________________
     for (var i = 0; i < amount; i++) {
 
@@ -267,22 +323,29 @@ function animate() {
         //resets enemies
         if (shiki[i].x < 0 - shiki[i].width) {
             // shiki[i].x = canvas.width
+            
             shiki[i].x = canvas.width * 1
             shiki[i].y = Math.random() * canvas.height - 25
+            shiki[i].amount +6
         }
         // if enemies hits bullets
 
         //if enemes hit player
         if (shiki[i].hitObject(haku)) {
             shiki[i].x = 3000
-            score1 = score1 - 20
-
+            
+            score1 = score1 - 2
+            
             if (score1 <= 0) {
                 score1 = 0
 
             }
             //health bar movement
-            health.width = health.width - 20
+            health.width = health.width - 2
+
+            if (hkglow2 == false) {
+                glow2()
+            }
 
         }
 
@@ -295,6 +358,7 @@ function animate() {
     if (bgx < 0 - canvas.width) {
 
         bgx = canvas.width
+     
 
     }
     if (bgx2 < 0 - canvas.width) {
@@ -307,13 +371,19 @@ function animate() {
         bgx3 = canvas.width
 
     }
+    /*if (soundbox.hitObject(haku) ) {
+      play()
+       
+
+
+    }*/
 
 
     // __________________________________________________move haku______________________________________________
     if (w) {
         //moves up 
         haku.y += -6
-
+        
     }
     if (s) {
 
@@ -344,6 +414,7 @@ function animate() {
         sound.play()
         clearTimeout(time);
         time = setTimeout(set, delay);
+        
     }
     if (ArrowDown && canShoot) {
         //shootdown 
@@ -382,39 +453,57 @@ function animate() {
     hak(haku)
     pointYub()
     score.drawScore()
+    score22.drawScore2()
     powerup.drawRect()
     ctx.drawImage(oni, powerup.x - 32, powerup.y - 40, 70, 80)
-
-
+ 
     haku.drawRect()
-    ctx.drawImage(yub, boss.x - 100, boss.y - 150, 312, 200)
+    //ctx.drawImage(yub, boss.x - 150, boss.y - 120, 312, 200)
 
-    boss.drawTri();
+    
+
     if (hkglow == false) {
         ctx.drawImage(himg, haku.x - 52, haku.y - 78, 135, 135)
-    }
-
+    }//green
     if (hkglow == true) {
-        ctx.drawImage(himg2, haku.x - 108, haku.y - 95, 215, 215)
+        ctx.drawImage(himg2, haku.x - 52, haku.y - 78, 135, 135)
+    }
+    
+    if (hkglow2 == false) {
+        ctx.drawImage(himg, haku.x - 52, haku.y - 78, 135, 135)
+    }
+    //red
+    if (hkglow2 == true) {
+        ctx.drawImage(himg3, haku.x - 52, haku.y - 78, 135, 135)
     }
 
+    //______________________________BOSS_______________________________________________
+    if (bosshealth  <= 2500)
+     {
+
+        ctx.drawImage(bird, boss.x - 120, boss.y - 100, 212, 200)
+     }
+    if (bosshealth  > 2500)
+     {
+        ctx.drawImage(yub, boss.x - 120, boss.y - 100, 212, 200)
+     }
+    boss.drawRect();
 
     // _________________GAME OVER!!!!_____________________________________________________
-    if (score1 <= 0) { // you lose
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        hkglow = false
-        score1 = 0
-
-        ctx.save();
-        ctx.fillStyle = "black"
-        ctx.font = "40px arial"
-        ctx.fillText("You lose! Refresh to try again!... ", 250, 425)
-        ctx.restore();
-
+    if (score1 <= 0)
+     { // you lose
+             
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(lose, 0,0,canvas.width, canvas.height)
+            hkglow = false
+            score1 = 0
+            score2 = 0
         
+           powerup.x =0
+           canShoot= false
+           
+            
     }
-
     if (bosshealth < 0) {
 
         // you win
@@ -424,7 +513,6 @@ function animate() {
     }
     
 }
-
 
 // random math gen
 function random(low, high) {
@@ -457,20 +545,15 @@ function hak(hak) {
 function pointYub() {
 
     var dy = haku.y - boss.y
-
     var dx = haku.x - boss.x
-
-
     var radians = Math.atan2(dy, dx)
 
     boss.angle = radians * 180 / Math.PI
     boss.vx = Math.cos(radians) * boss.force
     boss.vy = Math.sin(radians) * boss.force
 
-
     boss.x += boss.vx
     boss.y += boss.vy
-
 
     boss.move()
 }
@@ -478,10 +561,15 @@ function pointYub() {
 function glow() {
     if (hkglow == false) {
         hkglow = true
-        setTimeout(function () { hkglow = false }, 1050)
-
+        setTimeout(function () { hkglow = false }, 700)
     }
 
+}
+function glow2() {
+    if (hkglow2 == false) {
+        hkglow2 = true
+        setTimeout(function () { hkglow2 = false }, 700)
+    }
 
 }
 
@@ -496,41 +584,40 @@ function explode() {
 
         tokens[t].x += tokens[t].vx;
         tokens[t].y += tokens[t].vy;
-
-
+     
+        
     }
 
-    
 }
+
 
 function win()
 {
+   
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(win1, 0,0,canvas.width, canvas.height)
     hkglow = false
     score1 = 0
     score2 = 0
-
-
-    /*ctx.save();
-    ctx.fillStyle = "black"
-    ctx.font = "40px arial"
-    ctx.fillText("You win! Refresh to try again!... ", 300, canvas.height/2)
-    ctx.restore();*/
    powerup.x =0
    canShoot= false
+   
     
 }
 
-
-
-// reset bullets
-
-var canShoot = true;
-var time;
-var delay = 400;
+var canShoot = true
+var time
+var delay = 350
 
 function set() {
     console.log(canShoot)
     canShoot = true;
+}
+
+function play() {
+    var audio = document.getElementById("audio")
+    var audio = new Audio("sounds/dboy.mp3")
+    audio.play()
+    audio.currentTime=20
+
 }

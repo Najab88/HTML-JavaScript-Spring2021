@@ -72,6 +72,14 @@ function GameObject(obj) {
 		ctx.fillText("Health:" + score3, boss.x-65, boss.y +112)
 
 	}
+	this.drawScore3 = function () {
+
+		ctx.font = "bold 14px Verdana"
+		ctx.fillStyle = "black"
+		ctx.fillText("Shoot:" +  " Arrow Keys",500, 20)
+		ctx.fillText("Move:" +  " A, W, S, D ",500, 45)
+
+	}
 
 	this.drawCircle = function () {
 		ctx.save();

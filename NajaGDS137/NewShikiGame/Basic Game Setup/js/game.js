@@ -176,6 +176,7 @@ var gravity = 0
 //_______________________________________________this is the player score____________________________________
 var score = new GameObject()
 var score22 = new GameObject()
+var how= new GameObject()
 score.x = 500
 score.y = 500
 var score1 = startHealth
@@ -454,6 +455,7 @@ function animate() {
     pointYub()
     score.drawScore()
     score22.drawScore2()
+    how.drawScore3()
     powerup.drawRect()
     ctx.drawImage(oni, powerup.x - 32, powerup.y - 40, 70, 80)
  
@@ -620,4 +622,12 @@ function play() {
     audio.play()
     audio.currentTime=20
 
+}
+function how()
+{
+context.save();
+	context.fillStyle = "black";
+	context.font = "bold 10px Arial"
+	context.fillText("You Lose", 300, 25)
+	context.restore();
 }

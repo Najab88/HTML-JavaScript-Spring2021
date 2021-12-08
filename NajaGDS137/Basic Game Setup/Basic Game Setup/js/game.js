@@ -1,29 +1,16 @@
-
-var canvas = document.getElementById("canvas");
-var context = canvas.getContext("2d");
-
-var interval = 1000/60;
-var timer = setInterval(animate, interval);
-
-/*------------Use this if you want to implement States---------------
-var currentState = "";
-var states = [];
-
-states[""] = function()
-{
-
-}
-----------------------------------------------------------------------*/
-
-//-------------------------AnimationLoop--------------------------------
-
-function animate()
-{
-	context.clearRect(0,0,canvas.width, canvas.height);
-	/*-----------Use for State Machine ---------------------------------
-	//states[currentState]();
-	-------------------------------------------------------------------*/
-}
-
-
-
+<script>
+function boxdrop() {
+ var  b2Vec2 = Box2D.Common.Math.b2Vec2
+ ,b2BodyDef = Box2D.Dynamics.b2BodyDef
+ ,2Body = Box2D.Dynamics.b2Body
+ ,b2FixtureDef = Box2D.Dynamics.b2FixtureDef
+ ,b2Fixture = Box2D.Dynamics.b2Fixture
+ ,b2World = Box2D.Dynamics.b2World
+ ,b2MassData = 
+    Box2D.Collision.Shapes.b2MassData
+ ,b2PolygonShape = 
+    Box2D.Collision.Shapes.b2PolygonShape
+ ,b2CircleShape = 
+    Box2D.Collision.Shapes.b2CircleShape
+ ,b2DebugDraw = Box2D.Dynamics.b2DebugDraw
+ ;

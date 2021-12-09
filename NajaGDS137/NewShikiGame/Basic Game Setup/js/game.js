@@ -261,7 +261,7 @@ gameStates[1] = function ()
     if (KeyB) {
         //this is spacebar
         currentState ++
-        play()
+        //play()
     }
 }
 
@@ -574,6 +574,8 @@ gameStates[4] = function ()
     // you win
     setTimeout(explode)
     win()
+    //audio.pause();
+    //audio.currentTime = 0;
   
 }
 
@@ -673,8 +675,7 @@ function win()
     score2 = 0
    powerup.x =0
    canShoot= false
-   audio.pause();
-audio.currentTime = 0;
+
    
     
 }

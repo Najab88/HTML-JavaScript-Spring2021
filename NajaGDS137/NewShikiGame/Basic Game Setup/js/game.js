@@ -98,7 +98,6 @@ boss.vy = 1
 var bosshealth = 5000
 
 
-
 //_______________________________________________bullets______________________
 var bul = new Image() //bullets image
 bul.src = "images/fire.png"
@@ -138,6 +137,7 @@ for (var i = 0; i < amount; i++) {
 
 }
 
+
 //____________________________________this is health bar________________________________
 var health = new GameObject()
 health.x = 25
@@ -160,8 +160,6 @@ topbar.y = 35
 topbar.width = 1224
 topbar.height = 73
 topbar.color = "pink"
-
-
 
 
 
@@ -213,309 +211,381 @@ for (var i = 0; i < tamount; i++) {
     tokens[i].vy = random(-25, 10)
 }
 
+//___________________________________GameStates__________________________________
+var gameStates = []
+var currentState = 0
+var gameOver = true
+
+
+
+var openscreen = new Image() //sky background1
+openscreen.src = "images/open.png"
+
+var info = new Image() //sky background1
+info.src = "images/info.png"
+
+function changeState() {
+    if (currentState >= gameStates.length - 1) {
+        currentState = 0
+    }
+    else {
+        currentState++
+    }
+
+}
+function keyPress() {
+   
+   // if (gameOver == true) {
+        if (space) {
+            //this is spacebar
+            changeState()
+        }
+   // }
+}
+
+
+gameStates[0] = function () {
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(openscreen, 0,0,canvas.width, canvas.height)
+   keyPress()
+   
+
+}
+
+gameStates[1] = function () 
+{
+    gameOver = false
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(info, 0,0,canvas.width, canvas.height)
+    if (KeyB) {
+        //this is spacebar
+        currentState ++
+        play()
+    }
+}
+
+gameStates[2] = function () 
+{
+     // background image speed
+     bgx += bg.vx
+     bgx2 += bg2.vx
+     bgx3 += bg3.vx
+    // soundbox.x += soundbox.vx
+     
+     haku.x += haku.vx
+     // draw bg on screen
+ 
+     ctx.drawImage(bg, bgx, 0, canvas.width + 5, canvas.height)
+     ctx.drawImage(bg2, bgx2, bg2.y, canvas.width + 5, canvas.height)
+     ctx.drawImage(bg3, bgx3, bg2.y, canvas.width + 5, canvas.height)
+     //soundbox.drawRect()
+     // topbar.drawRect()
+     health2.drawBar()
+     health.drawBar()
+    
+     //_________________________________________________________________powerup____________________________________
+     powerup.y += powerup.vy
+ 
+     //resets powerup
+     if (powerup.y > 900 + powerup.height) {
+         powerup.y = -3000 + Math.random() / canvas.width
+         powerup.x = Math.random() * canvas.height + 130
+     }
+     if (haku.hitObject(powerup)) {
+         score1 = score1 + 10
+         health.width = health.width + 10
+         powerup.y = -9000 + Math.random() / canvas.width
+         powerup.x = Math.random() * canvas.height + 130
+         healthup.play()
+ 
+         if (score1 > 100) {
+             score1 = 100
+ 
+         }
+         if (health.width > 300) {
+             health.width = 300
+ 
+         }
+         if (health.width < 0) {
+             health.width = 0
+ 
+         }
+ 
+         if (hkglow == false) {
+             glow()
+         }
+        
+     }
+ 
+     if (boss.hitObject(haku)) {
+         score1 -= 5
+         health.width = health.width - 5
+ 
+         
+       
+         if (hkglow2 == false) {
+             glow2()
+         }
+     }
+ 
+     //______________________________Bullets__________________________________________________________
+     for (b in bullets) {
+         bullets[b].x += bullets[b].vx
+         bullets[b].y += bullets[b].vy
+         bullets[b].color = "rgb(230, 24, 144, 0)"
+         bullets[b].drawRect()
+         ctx.drawImage(bul, bullets[b].x - 25, bullets[b].y - 35, 70, 70)
+ 
+         for (i in shiki) {
+             if (shiki[i].hitObject(bullets[b])) {
+                 shiki[i].x = 3000
+                 score2 += 10
+                 bullets[b].x = -500;
+                 bullets[b].y = -500
+ 
+             }
+         }
+ 
+         if (boss.hitObject(bullets[b])) {
+             score2 += 100
+             score3 -= 80
+             bosshealth -= 80
+             bullets[b].x = -500;
+             bullets[b].y = -500
+         }
+         if (bullets[b].x > canvas.width)
+         {
+             bullets[b].x = -500000000000000000000000
+         }if (bullets[b].y > canvas.height)
+         {
+             bullets[b].y = -500000000000000000000000
+         }
+     }
+     
+     //______________________________enemy__________________________________________________________
+     for (var i = 0; i < amount; i++) {
+ 
+         shiki[i].x += -shiki[i].vx
+         //shiki[i].y += shiki[i].vy;
+ 
+         //resets enemies
+         if (shiki[i].x < 0 - shiki[i].width) {
+             // shiki[i].x = canvas.width
+             
+             shiki[i].x = canvas.width * 1
+             shiki[i].y = Math.random() * canvas.height - 25
+           
+         }
+         // if enemies hits bullets
+ 
+         //if enemes hit player
+         if (shiki[i].hitObject(haku)) {
+             shiki[i].x = 3000
+             
+             score1 = score1 - 2
+             
+             if (score1 <= 0) {
+                 score1 = 0
+ 
+             }
+             //health bar movement
+             health.width = health.width - 2
+ 
+             if (hkglow2 == false) {
+                 glow2()
+             }
+ 
+         }
+ 
+         shiki[i].drawTri()
+         ctx.drawImage(paper, shiki[i].x - 50, shiki[i].y - 43, 100, 100)
+     }
+ 
+ 
+     //___________________________Resets scrolling BG________________________________________
+     if (bgx < 0 - canvas.width) {
+ 
+         bgx = canvas.width
+      
+ 
+     }
+     if (bgx2 < 0 - canvas.width) {
+ 
+         bgx2 = canvas.width
+ 
+     }
+     if (bgx3 < 0 - canvas.width) {
+ 
+         bgx3 = canvas.width
+ 
+     }
+     /*if (soundbox.hitObject(haku) ) {
+       play()
+        
+ 
+ 
+     }*/
+ 
+ 
+     // __________________________________________________move haku______________________________________________
+     if (w) {
+         //moves up 
+         haku.y += -6
+         
+     }
+     if (s) {
+ 
+         haku.y += 6
+     }
+     if (a) {
+         //moves left
+         haku.x += -6
+ 
+ 
+     }
+     if (d) {
+         //moves down 
+         haku.x += 6
+     }
+ 
+ 
+ 
+ 
+ 
+     //_____________________________________bullet shoot keys_________________________________________
+     if (ArrowUp && canShoot) {
+         //shoot up
+         canShoot = false;
+         bullets[bulletCount] = new GameObject({ width: 25, height: 25, angle: 270, x: haku.x, y: haku.y, vx: Math.cos(270 * Math.PI / 180) * 10, vy: Math.sin(270 * Math.PI / 180) * 10 })
+         bulletCount++;
+         sound.currentTime = 1
+         sound.play()
+         clearTimeout(time);
+         time = setTimeout(set, delay);
+         
+     }
+     if (ArrowDown && canShoot) {
+         //shootdown 
+         canShoot = false;
+         bullets[bulletCount] = new GameObject({ width: 25, height: 25, angle: 90, x: haku.x, y: haku.y, vx: Math.cos(90 * Math.PI / 180) * 10, vy: Math.sin(90 * Math.PI / 180) * 10 })
+         bulletCount++;
+         sound.currentTime = 1
+         sound.play()
+         clearTimeout(time);
+         time = setTimeout(set, delay);
+     }
+     if (ArrowLeft && canShoot) {
+         //shoot left
+         canShoot = false;
+         bullets[bulletCount] = new GameObject({ width: 25, height: 25, angle: 180, x: haku.x, y: haku.y, vx: Math.cos(180 * Math.PI / 180) * 10, vy: Math.sin(180 * Math.PI / 180) * 10 })
+         bulletCount++;
+         sound.currentTime = 1
+         sound.play()
+         clearTimeout(time);
+         time = setTimeout(set, delay);
+     }
+     if (ArrowRight && canShoot) {
+         //Shoot Right 
+         canShoot = false;
+         bullets[bulletCount] = new GameObject({ width: 25, height: 25, angle: 0, x: haku.x, y: haku.y, vx: Math.cos(0 * Math.PI / 180) * 10, vy: Math.sin(0 * Math.PI / 180) * 10 })
+         bulletCount++;
+         sound.currentTime = 1
+         sound.play()
+         clearTimeout(time);
+         time = setTimeout(set, delay);
+     }
+     // bullets[i].move()
+ 
+ 
+     // draw on screen
+     hak(haku)
+     pointYub()
+     score.drawScore()
+     score22.drawScore2()
+     howplay.drawScore3()
+     powerup.drawRect()
+     ctx.drawImage(oni, powerup.x - 32, powerup.y - 40, 70, 80)
+  
+     haku.drawRect()
+     //ctx.drawImage(yub, boss.x - 150, boss.y - 120, 312, 200)
+ 
+     
+ 
+     if (hkglow == false) {
+         ctx.drawImage(himg, haku.x - 52, haku.y - 78, 135, 135)
+     }//green
+     if (hkglow == true) {
+         ctx.drawImage(himg2, haku.x - 52, haku.y - 78, 135, 135)
+     }
+     
+     if (hkglow2 == false) {
+         ctx.drawImage(himg, haku.x - 52, haku.y - 78, 135, 135)
+     }
+     //red
+     if (hkglow2 == true) {
+         ctx.drawImage(himg3, haku.x - 52, haku.y - 78, 135, 135)
+     }
+ 
+     //______________________________BOSS_______________________________________________
+     if (bosshealth  <= 2500)
+      {
+ 
+         ctx.drawImage(bird, boss.x - 120, boss.y - 100, 212, 200)
+      }
+     if (bosshealth  > 2500)
+      {
+         ctx.drawImage(yub, boss.x - 120, boss.y - 100, 212, 200)
+      }
+     boss.drawRect();
+ 
+      // _________________GAME OVER!!!!_____________________________________________________
+      if (score1 <= 0)
+      { // you lose
+            
+             gameOver = true
+             currentState = 3
+     }
+     if (bosshealth < 0) {
+        gameOver = true
+        currentState = 4
+        // you win
+        
+
+    }
+}
+
+gameStates[3] = function () 
+{
+     //you lose
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(lose, 0,0,canvas.width, canvas.height)
+    hkglow = false
+    score1 = 0
+    score2 = 0
+
+   powerup.x =0
+   canShoot= false
+   
+}
+
+gameStates[4] = function () 
+{
+    // you win
+    setTimeout(explode)
+    win()
+  
+}
 
 function animate() {
 
-
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-    // background image speed
-    bgx += bg.vx
-    bgx2 += bg2.vx
-    bgx3 += bg3.vx
-   // soundbox.x += soundbox.vx
-    
-    haku.x += haku.vx
-    // draw bg on screen
-
-    ctx.drawImage(bg, bgx, 0, canvas.width + 5, canvas.height)
-    ctx.drawImage(bg2, bgx2, bg2.y, canvas.width + 5, canvas.height)
-    ctx.drawImage(bg3, bgx3, bg2.y, canvas.width + 5, canvas.height)
-    //soundbox.drawRect()
-    // topbar.drawRect()
-    health2.drawBar()
-    health.drawBar()
+    gameStates[currentState]()
    
-    //_________________________________________________________________powerup____________________________________
-    powerup.y += powerup.vy
-
-    //resets powerup
-    if (powerup.y > 900 + powerup.height) {
-        powerup.y = -3000 + Math.random() / canvas.width
-        powerup.x = Math.random() * canvas.height + 130
-    }
-    if (haku.hitObject(powerup)) {
-        score1 = score1 + 10
-        health.width = health.width + 10
-        powerup.y = -9000 + Math.random() / canvas.width
-        powerup.x = Math.random() * canvas.height + 130
-        healthup.play()
-
-        if (score1 > 100) {
-            score1 = 100
-
-        }
-        if (health.width > 300) {
-            health.width = 300
-
-        }
-        if (health.width < 0) {
-            health.width = 0
-
-        }
-
-        if (hkglow == false) {
-            glow()
-        }
-       
-    }
-
-    if (boss.hitObject(haku)) {
-        score1 -= 5
-        health.width = health.width - 5
-
-        
-      
-        if (hkglow2 == false) {
-            glow2()
-        }
-    }
-
-    //______________________________Bullets__________________________________________________________
-    for (b in bullets) {
-        bullets[b].x += bullets[b].vx
-        bullets[b].y += bullets[b].vy
-        bullets[b].color = "rgb(230, 24, 144, 0)"
-        bullets[b].drawRect()
-        ctx.drawImage(bul, bullets[b].x - 25, bullets[b].y - 35, 70, 70)
-
-        for (i in shiki) {
-            if (shiki[i].hitObject(bullets[b])) {
-                shiki[i].x = 3000
-                score2 += 10
-                bullets[b].x = -500;
-                bullets[b].y = -500
-
-            }
-        }
-
-        if (boss.hitObject(bullets[b])) {
-            score2 += 100
-            score3 -= 80
-            bosshealth -= 80
-            bullets[b].x = -500;
-            bullets[b].y = -500
-        }
-        if (bullets[b].x > canvas.width)
-        {
-            bullets[b].x = -500000000000000000000000
-        }if (bullets[b].y > canvas.height)
-        {
-            bullets[b].y = -500000000000000000000000
-        }
-    }
-    
-    //______________________________enemy__________________________________________________________
-    for (var i = 0; i < amount; i++) {
-
-        shiki[i].x += -shiki[i].vx
-        //shiki[i].y += shiki[i].vy;
-
-        //resets enemies
-        if (shiki[i].x < 0 - shiki[i].width) {
-            // shiki[i].x = canvas.width
-            
-            shiki[i].x = canvas.width * 1
-            shiki[i].y = Math.random() * canvas.height - 25
-          
-        }
-        // if enemies hits bullets
-
-        //if enemes hit player
-        if (shiki[i].hitObject(haku)) {
-            shiki[i].x = 3000
-            
-            score1 = score1 - 2
-            
-            if (score1 <= 0) {
-                score1 = 0
-
-            }
-            //health bar movement
-            health.width = health.width - 2
-
-            if (hkglow2 == false) {
-                glow2()
-            }
-
-        }
-
-        shiki[i].drawTri()
-        ctx.drawImage(paper, shiki[i].x - 50, shiki[i].y - 43, 100, 100)
-    }
-
-
-    //___________________________Resets scrolling BG________________________________________
-    if (bgx < 0 - canvas.width) {
-
-        bgx = canvas.width
-     
-
-    }
-    if (bgx2 < 0 - canvas.width) {
-
-        bgx2 = canvas.width
-
-    }
-    if (bgx3 < 0 - canvas.width) {
-
-        bgx3 = canvas.width
-
-    }
-    /*if (soundbox.hitObject(haku) ) {
-      play()
-       
-
-
-    }*/
-
-
-    // __________________________________________________move haku______________________________________________
-    if (w) {
-        //moves up 
-        haku.y += -6
-        
-    }
-    if (s) {
-
-        haku.y += 6
-    }
-    if (a) {
-        //moves left
-        haku.x += -6
-
-
-    }
-    if (d) {
-        //moves down 
-        haku.x += 6
-    }
-
-
-
-
-
-    //_____________________________________bullet shoot keys_________________________________________
-    if (ArrowUp && canShoot) {
-        //shoot up
-        canShoot = false;
-        bullets[bulletCount] = new GameObject({ width: 25, height: 25, angle: 270, x: haku.x, y: haku.y, vx: Math.cos(270 * Math.PI / 180) * 10, vy: Math.sin(270 * Math.PI / 180) * 10 })
-        bulletCount++;
-        sound.currentTime = 1
-        sound.play()
-        clearTimeout(time);
-        time = setTimeout(set, delay);
-        
-    }
-    if (ArrowDown && canShoot) {
-        //shootdown 
-        canShoot = false;
-        bullets[bulletCount] = new GameObject({ width: 25, height: 25, angle: 90, x: haku.x, y: haku.y, vx: Math.cos(90 * Math.PI / 180) * 10, vy: Math.sin(90 * Math.PI / 180) * 10 })
-        bulletCount++;
-        sound.currentTime = 1
-        sound.play()
-        clearTimeout(time);
-        time = setTimeout(set, delay);
-    }
-    if (ArrowLeft && canShoot) {
-        //shoot left
-        canShoot = false;
-        bullets[bulletCount] = new GameObject({ width: 25, height: 25, angle: 180, x: haku.x, y: haku.y, vx: Math.cos(180 * Math.PI / 180) * 10, vy: Math.sin(180 * Math.PI / 180) * 10 })
-        bulletCount++;
-        sound.currentTime = 1
-        sound.play()
-        clearTimeout(time);
-        time = setTimeout(set, delay);
-    }
-    if (ArrowRight && canShoot) {
-        //Shoot Right 
-        canShoot = false;
-        bullets[bulletCount] = new GameObject({ width: 25, height: 25, angle: 0, x: haku.x, y: haku.y, vx: Math.cos(0 * Math.PI / 180) * 10, vy: Math.sin(0 * Math.PI / 180) * 10 })
-        bulletCount++;
-        sound.currentTime = 1
-        sound.play()
-        clearTimeout(time);
-        time = setTimeout(set, delay);
-    }
-    // bullets[i].move()
-
-
-    // draw on screen
-    hak(haku)
-    pointYub()
-    score.drawScore()
-    score22.drawScore2()
-    howplay.drawScore3()
-    powerup.drawRect()
-    ctx.drawImage(oni, powerup.x - 32, powerup.y - 40, 70, 80)
- 
-    haku.drawRect()
-    //ctx.drawImage(yub, boss.x - 150, boss.y - 120, 312, 200)
-
-    
-
-    if (hkglow == false) {
-        ctx.drawImage(himg, haku.x - 52, haku.y - 78, 135, 135)
-    }//green
-    if (hkglow == true) {
-        ctx.drawImage(himg2, haku.x - 52, haku.y - 78, 135, 135)
-    }
-    
-    if (hkglow2 == false) {
-        ctx.drawImage(himg, haku.x - 52, haku.y - 78, 135, 135)
-    }
-    //red
-    if (hkglow2 == true) {
-        ctx.drawImage(himg3, haku.x - 52, haku.y - 78, 135, 135)
-    }
-
-    //______________________________BOSS_______________________________________________
-    if (bosshealth  <= 2500)
-     {
-
-        ctx.drawImage(bird, boss.x - 120, boss.y - 100, 212, 200)
-     }
-    if (bosshealth  > 2500)
-     {
-        ctx.drawImage(yub, boss.x - 120, boss.y - 100, 212, 200)
-     }
-    boss.drawRect();
-
-    // _________________GAME OVER!!!!_____________________________________________________
-    if (score1 <= 0)
-     { // you lose
-             
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(lose, 0,0,canvas.width, canvas.height)
-            hkglow = false
-            score1 = 0
-            score2 = 0
-        
-           powerup.x =0
-           canShoot= false
-           
-            
-    }
-    if (bosshealth < 0) {
-
-        // you win
-        setTimeout(explode)
-        win()
-
-    }
-    
 }
 
+
+//________________________________FUNCTIONS_____________________________________________________________
 // random math gen
 function random(low, high) {
     return Math.random() * (high - low) + low;
@@ -603,6 +673,8 @@ function win()
     score2 = 0
    powerup.x =0
    canShoot= false
+   audio.pause();
+audio.currentTime = 0;
    
     
 }
@@ -620,9 +692,10 @@ function play() {
     var audio = document.getElementById("audio")
     var audio = new Audio("sounds/dboy.mp3")
     audio.play()
-    audio.currentTime=20
+    
 
 }
+
 function how()
 {
 context.save();

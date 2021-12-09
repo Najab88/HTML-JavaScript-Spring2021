@@ -153,7 +153,8 @@ function GameObject(obj) {
 		}
 		return false;
 	}
-		
+	
+	
 	//------Tests whether a single point overlaps the bounding box of another object-------
 	this.hitTestPoint = function(obj)
 	{

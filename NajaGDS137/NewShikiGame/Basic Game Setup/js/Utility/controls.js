@@ -2,6 +2,7 @@ var w = false
 var s = false
 var a = false
 var d = false
+var KeyB = false
 var ArrowUp = false
 var ArrowRight = false
 var ArrowLeft = false
@@ -49,6 +50,10 @@ function press(e)
 	{
 		 ArrowLeft= true
 	}
+	if(e.keyCode == 66)
+	{
+		 KeyB= true
+	}
 }
 
 function release(e)
@@ -88,5 +93,9 @@ function release(e)
 	if(e.keyCode == 37)
 	{
 		 ArrowLeft= false
+	}
+	if(e.keyCode == 66)
+	{
+		KeyB= false
 	}
 }
